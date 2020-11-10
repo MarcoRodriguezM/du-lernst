@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{!-- Hoja de estilos Bulma desde el CDN --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+
+  <script defer src="/scripts/carousel.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+
+  <!-- <script src="~bulma-carousel/dist/js/bulma-carousel.min.js"></script> --> <noscript>You need to enable JavaScript to run this app.</noscript> <div id="root"></div> <script> $(document).ready(function(){ var carousels = bulmaCarousel.attach(); // carousels now contains an array of all Carousel instances }); </script> </body> </html>
+  
+  <title>Du Lernst</title>
+</head>
+
+<body>
+  {{!-- Barra de navegación --}}
+  <header>  
+  <nav class="navbar is-transparent">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://i.postimg.cc/SstF0wQS/dulernst-fw.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        Home
+      </a>
+        <a class="navbar-item" href="/">
+          Explorar Cursos
+        </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="#">
+          Categorias
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+            Ejemplo 1
+          </a>
+          <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+            Ejemplo 2
+          </a>
+          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+            Ejemplo 3
+          </a>
+          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+            Ejemplo 4
+          </a>
+          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+            Ejemplo 5
+          </a>
+          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+            Ejemplo 6
+          </a>
+          {{!-- <hr class="navbar-divider"> --}}
+          <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
+            Ejemplo 7
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
+              <span class="icon">
+                <i class="fab fa-twitter"></i>
+              </span>
+              <span>
+                Tweet
+              </span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
+              <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>
+                Iniciar Sesion
+              </span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-primary" href="/crear-cuenta">
+              <span class="icon">
+                <i class="fas fa-user-plus"></i>
+              </span>
+              <span>Registrarse</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  </header>
+
+  {{!-- Contenido principal --}}
+  <main class="flex-shrink-0">
+    <div class="container pt-5">
+      {{{body}}}
+    </div>
+  </main>
+
+  {{!-- Pié de página --}}
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <span class="text-muted">Du Lernst - 2020</span>
+    </div>
+  </footer>
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+<style>
+  body{
+    background-image: url("https://userscontent2.emaze.com/images/4b20e1bb-e309-41a4-b4e9-e6f7e55d7b97/635462281391468165_Fondoabstractoconcolorespastelesendiagonal-344435.jpg");
+    background-size: cover;
+  }
+  .navbar {
+    background-color: transparent;
+}
+.footer {
+    background-color: transparent;
+}
+</style>
