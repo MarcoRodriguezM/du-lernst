@@ -12,3 +12,24 @@ module.exports = () => {
   router.get("/", (req, res, next) => {
     res.render("home");
   });
+  // Rutas para usuario
+  router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
+
+  router.post(
+    "/crear-cuenta",
+    [
+      // Realizar una verificación de los atributos del formulario
+      // https://express-validator.github.io/docs/index.html
+      check("nombre", "Debes ingresar tu nombre completo.")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("email", "Debes ingresar un correo electrónico.").not().isEmpty(),
+      check("email", "El correo electrónico ingresado no es válido.")
+        .isEmail()
+        .normalizeEmail(),
+      check("password", "Debes ingresar una contraseña").not().isEmpty(),
+    ],
+    usuarioController.crearCuenta
+  );
+
