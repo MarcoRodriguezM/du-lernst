@@ -29,3 +29,22 @@ transport.use(
     extName: ".hbs",
   })
 );
+
+// Encabezado del correo electrónico
+exports.enviarCorreo = async (opciones) => {
+    const opcionesCorreo = {
+      from: " Cashize <hola@cashize.com>",
+      to: opciones.to,
+      subject: opciones.subject,
+      template: opciones.template,
+      context: {
+        resetUrl: opciones.resetUrl,
+        nombre: opciones.nombre,
+      },
+    };
+  
+    // Enviar el correo mediante una promesa
+    const sendMail = util.promisify(transport.sendMail, transport);
+    return sendMail.call(transport, opcionesCorreo);
+  };
+  
