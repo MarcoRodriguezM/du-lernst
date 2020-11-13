@@ -31,3 +31,30 @@
               <div class="control">
                 <input class="input is-medium is-rounded" type="password"  name="password" autocomplete="current-password" placeholder="*******" required />
               </div>
+              {{!-- Mensajes para el usuario --}}
+              {{> showMessages messages}}
+            </div>
+            <br />
+           
+            <button class="button is-block is-info is-large is-fullwidth">Login <i class="fas fa-sign-in-alt" aria-hidden="true"></i></button>
+          </form>
+          <br>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <a style="color: black;" href="/olvide-password">Forgot Password?</a>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <a style="color: black;" href="/crear-cuenta">Create an Account</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+
+</html>
