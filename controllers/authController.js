@@ -109,3 +109,48 @@ exports.enviarToken = async (req, res, next) => {
     res.redirect("/olvide-password");
   }
 };
+// Mostrar el formulario de cambio de contraseña
+exports.formularioNuevoPassword = async (req, res, next) => {
+  const messages = [];
+  // Buscar el usuario por medio del token que se envía como parámetro
+  try {
+    // Mongoose se encarge de verificar la validez del token
+    // $gt -> mayor que
+    const usuario = await Usuario.findOne({
+      token: req.params.token,
+      expira: { $gt: Date.now() },
+    });
+
+    // No se pudo encontrar el usuario o el token ha vencido
+    if (!usuario) {
+      messages.push({
+        message:
+          "Solicitud expirada. Vuelve a solicitar el cambio de contraseña.",
+        alertType: "danger",
+      });
+
+      req.flash("messages", messages);
+
+      res.redirect("/olvide-password");
+    }
+
+    // Mostrar el formulario de nuevo password
+    res.render("nuevoPassword", {
+      // layout: "auth",
+      typePage: "register-page",
+      signButtonValue: "/iniciar-sesion",
+      signButtonText: "Iniciar sesión",
+      year: new Date().getFullYear(),
+    });
+  } catch (error) {
+    messages.push({
+      message:
+        "Ocurrió un error al momento de comunicarse con el servidor. Favor intentar nuevamente.",
+      alertType: "danger",
+    });
+
+    req.flash("messages", messages);
+
+    res.redirect("/olvide-password");
+  }
+};
