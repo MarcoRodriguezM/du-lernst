@@ -154,3 +154,55 @@ exports.formularioNuevoPassword = async (req, res, next) => {
     res.redirect("/olvide-password");
   }
 };
+// Almacena la nueva contraseña del usuario
+exports.almacenarNuevaPassword = async (req, res, next) => {
+  const messages = [];
+
+  try {
+    // Buscar el usuario por medio del token y validar que aún no haya vencido
+    const usuario = await Usuario.findOne({
+      token: req.params.token,
+      expira: { $gt: Date.now() },
+    });
+
+    // No se encontró el token o token vencido
+    if (!usuario) {
+      messages.push({
+        message:
+          "Solicitud expirada. Vuelve a solicitar el cambio de contraseña.",
+        alertType: "danger",
+      });
+
+      req.flash("messages", messages);
+
+      res.redirect("/olvide-password");
+    }
+
+    // Cambiar la contraseña
+    usuario.password = req.body.password;
+
+    // Eliminar los valores que ya no son útiles
+    usuario.token = undefined;
+    usuario.expira = undefined;
+
+    await usuario.save();
+
+    // Redireccionar
+    messages.push({
+      message: "¡Contraseña modificada correctamente!",
+      alertType: "success",
+    });
+    req.flash("messages", messages);
+    res.redirect("/iniciar-sesion");
+  } catch (error) {
+    messages.push({
+      message:
+        "Ocurrió un error al momento de comunicarse con el servidor. Favor intentar nuevamente.",
+      alertType: "danger",
+    });
+
+    req.flash("messages", messages);
+
+    res.redirect("/olvide-password");
+  }
+};
