@@ -53,3 +53,19 @@ passport.use(
       }
     )
   );
+  // Serializar el usuario dentro de la sesión
+passport.serializeUser((usuario, done) => done(null, usuario._id));
+
+// Deserializar el usuario desde la sesión
+passport.deserializeUser(async (id, done) => {
+  try {
+    const usuario = await Usuario.findById(id).exec();
+
+    return done(null, usuario);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+module.exports = passport;
+
