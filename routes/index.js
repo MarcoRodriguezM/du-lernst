@@ -32,4 +32,25 @@ module.exports = () => {
     ],
     usuarioController.crearCuenta
   );
+  
+  router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
+
+  router.post("/iniciar-sesion", authController.autenticarUsuario);
+
+  router.get("/olvide-password", authController.formularioRestablecerPassword);
+
+  router.post("/olvide-password", authController.enviarToken);
+
+  router.get("/olvide-password/:token", authController.formularioNuevoPassword);
+
+  router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
+
+  // Rutas de administración
+  router.get("/administrar", (req, res, next) => {
+    res.send("Administración del sitio");
+  });
+
+  return router;
+};
+
 
