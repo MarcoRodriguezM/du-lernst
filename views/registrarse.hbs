@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Neumorphic Login - Free Bulma template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/neumorphic-login.css">
+  </head>
+
+  <body>            
+    
+    <div class="hero is-fullheight content=center " style="margin: -10% 0 0 38%;" >
+      <div class="hero-body has-text-centered" >
+        <div class="login">
+         <img src="https://i.postimg.cc/SstF0wQS/dulernst-fw.png" alt="Bulma: a modern CSS framework based on Flexbox"width="200" height="80">
+            <br>
+            <br>
+          <form class="register-form" method="POST" action="/crear-cuenta">
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium is-rounded" type="nombre" name="nombre" placeholder="Nombre" value={{nombre}}>
+              </div>
+            </div>
+            
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium is-rounded" type="email"  name="email" autocomplete="current-password" placeholder="Correo Electronico" value={{email}} >
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium is-rounded" type="password" name="password" placeholder="Contraseña" value={{password}} >
+              </div>
+            </div>
+            <br />
+           
+            <button class="button is-block is-info is-large is-fullwidth">Registrarse <i class="fas fa-sign-in-alt" aria-hidden="true"></i></button>
+          </form>
+          <br>
+          
+        </div>
+      </div>
+    </div>
+    
+  </body>
+
+</html>
