@@ -17,6 +17,13 @@ module.exports = () => {
   router.get("/categorias", (req, res, next) => {
     res.render("categorias");
   });
+  router.get("/videostutorias", (req, res, next) => {
+    res.render("videostutorias");
+  });
+  
+  router.get("/videoscategoria", (req, res, next) => {
+    res.render("videoscategoria");
+  });
 
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
