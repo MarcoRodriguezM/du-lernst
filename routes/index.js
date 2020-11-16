@@ -27,6 +27,11 @@ module.exports = () => {
     res.render("informacion");
   });
 
+
+  router.get("/tutorias", (req, res, next) => {
+    res.render("Tutorias");
+  });
+
   
 
   router.post("/categorias", (req, res, next) => {
