@@ -2,6 +2,7 @@
 const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
 const authController = require("../controllers/authController");
+const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
 
 // Configura y mantiene todos los endpoints en el servidor
@@ -12,6 +13,18 @@ module.exports = () => {
   router.get("/", (req, res, next) => {
     res.render("home");
   });
+
+  router.get("/categorias", (req, res, next) => {
+    res.render("categorias");
+  });
+
+  router.post("/categorias", (req, res, next) => {
+  
+    const categorias = categoriaController.mostrar();
+  
+    res.render("categorias", { categorias });
+  });
+
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
 
@@ -32,7 +45,7 @@ module.exports = () => {
     ],
     usuarioController.crearCuenta
   );
-  
+
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 
   router.post("/iniciar-sesion", authController.autenticarUsuario);
@@ -45,6 +58,8 @@ module.exports = () => {
 
   router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
 
+  router.post("/categorias", categoriaController.mostrar);
+
   // Rutas de administración
   router.get("/administrar", (req, res, next) => {
     res.send("Administración del sitio");
@@ -52,5 +67,3 @@ module.exports = () => {
 
   return router;
 };
-
-
