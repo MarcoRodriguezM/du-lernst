@@ -20,9 +20,9 @@ module.exports = () => {
 
   router.post("/categorias", (req, res, next) => {
   
-    const categorias = categoriaController.mostrar();
+    const cat = categoriaController.mostrar();
   
-    res.render("categorias", { categorias });
+    res.render("categorias", { cat });
   });
 
   // Rutas para usuario
