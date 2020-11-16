@@ -1,127 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cards List - Bulma Templates</title>
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="../css/cards.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    @media(max-width: 500px) {
+      .reverse-columns {
+        flex-direction: column-reverse;
+        display: flex;
+      }
+    }
 
-  <body>
+    .titled {
+      font-family: 'Merriweather', serif !important;
+      font-size: 58px !important;
+      font-weight: 400 !important;
+      line-height: 64px !important;
+    }
 
-    <!-- START NAV -->
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="#">
-            <img src="https://cdn.emk.dev/templates/bulma-logo-light.png" alt="Logo">
-          </a>
-          <span class="navbar-burger burger" data-target="navbarMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item is-active">
-              Home
-            </a>
-            <a class="navbar-item">
-              Examples
-            </a>
-            <a class="navbar-item">
-              Features
-            </a>
-            <a class="navbar-item">
-              Team
-            </a>
-            <a class="navbar-item">
-              Archives
-            </a>
-            <a class="navbar-item">
-              Help
-            </a>
-          </div>
-        </div>
+    .subtitled {
+      font-family: 'Merriweather', serif !important;
+      font-size: 22px !important;
+      font-weight: 400 !important;
+      line-height: 36px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NavBar va a todo lo ancho -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      </a>
+    </div>
+
+    <div class="navbar-menu">
+
+      <div class="navbar-end">
+        <a class="navbar-item">
+          WHY?
+        </a>
+
+        <a class="navbar-item">
+          BUY
+        </a>
+
+        <a class="navbar-item">
+          ILLUSTRATION SERIES
+        </a>
+
+        <a class="navbar-item">
+          EXCLUSIVE ILLUSTRATIONS
+        </a>
+
       </div>
-    </nav>
-    <!-- END NAV -->
+    </div>
+  </nav>
 
-    <div class="container">
-      <div class="section">
-        <div class="columns">
-          <div class="column has-text-centered">
-            <h1 class="title" style="color: ghostwhite;">Bulma Card Layout Template</h1><br>
-          </div>
-        </div>
-        <div id="app" class="row columns is-multiline">
-          <div v-for="card in cardData" key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
+  <!-- Hero del producto -->
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered reverse-columns">
+          <div class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd" data-aos="fade-down">
+            <h1 class="title titled is-1 mb-6">
+              absurd illustrations that make sense
+            </h1>
+            <h2 class=" subtitled subtitle has-text-grey is-4 has-text-weight-normal is-family-sans-serif">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate dolorum vitae dolores
+              nesciunt totam magni quas.
+            </h2>
+            <div class="buttons">
+              <button class="button is-black">Download</button>
+              <button class="button">Subscribe</button>
             </div>
           </div>
+          <div data-aos="fade-right" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd">
+            <figure class="image is-square">
+              <img src="../images/undraw_Camera_re_cnp4.svg">
+            </figure>
+          </div>
+
         </div>
       </div>
     </div>
-    <footer class="footer">
+  </section>
+
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
       <div class="container">
-        <div class="content has-text-centered">
-          <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
+        <div class="columns  is-vcentered">
+          <div data-aos="fade-left" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd">
+            <figure class="image is-square">
+              <img src="../images/undraw_Camera_re_cnp4.svg">
+            </figure>
           </div>
-          <p>
-            <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
-            The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
-          </p>
+          <div data-aos="fade-down" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd">
+            <h1 class="titled title is-1 mb-6">
+              absurd illustrations that make sense
+            </h1>
+            <h2 class="subtitled subtitle">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate dolorum vitae dolores
+              nesciunt totam magni quas.
+            </h2>
+          </div>
+
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="../js/cardsData.js"></script>
+  <section class="hero is-white is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns  is-vcentered reverse-columns">
+          <div data-aos="fade-right" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-5-desktop is-offset-1-desktop
+          is-5-widescreen is-offset-1-widescreen
+          is-5-fullhd is-offset-1-fullhd">
+            <h1 class="title titled is-1 mb-6">
+              absurd illustrations that make sense
+            </h1>
+            <h2 class="subtitle subtitled">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate dolorum vitae dolores
+              nesciunt totam magni quas.
+            </h2>
+          </div>
+          <div data-aos="fade-down" class="column
+          is-10-mobile is-offset-1-mobile
+          is-10-tablet is-offset-1-tablet
+          is-4-desktop is-offset-1-desktop
+          is-4-widescreen is-offset-1-widescreen
+          is-4-fullhd is-offset-1-fullhd" data-aos="fade-up">
+            <figure class="image is-square">
+              <img src="../images/undraw_Camera_re_cnp4.svg">
+            </figure>
+          </div>
 
-    <!-- Using Vue to populate cards to reduce redundant code -->
-    <script>
-      var app = new Vue({
-        el: '#app',
-        data: {
-          cardData: cardsData
-        }
-      })
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </script>
-  </body>
+  <section class="hero is-medium has-text-centered">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div data-aos="zoom-in-up" class="column is-8">
+            <h1 class="title titled is-1 mb-6">
+              Primary bold title <span id="typewriter"></span>
+            </h1>
+            <h2 class="subtitle subtitled">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate dolorum vitae dolores
+              nesciunt totam magni quas.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+            </h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/2.13.1/core.min.js"></script>
+  <script>
+    new Typewriter('#typewriter', {
+      strings: ['typewriter', 'Effect', 'typewriter.js', 'example'],
+      autoStart: true,
+      loop: true,
+    });
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true
+    });
+  </script>
+</body>
 
 </html>
