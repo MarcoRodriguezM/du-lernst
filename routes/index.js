@@ -18,6 +18,17 @@ module.exports = () => {
     res.render("categorias");
   });
 
+
+  router.get("/Asociarse", (req, res, next) => {
+    res.render("formularioAsoci");
+  });
+
+  router.get("/informacion", (req, res, next) => {
+    res.render("informacion");
+  });
+
+  
+
   router.post("/categorias", (req, res, next) => {
   
     const cat = categoriaController.mostrar();
