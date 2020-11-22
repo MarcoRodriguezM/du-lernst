@@ -9,8 +9,10 @@ exports.mostrar = function () {
 
         categorias.forEach(function (doc,err) {
             cat.push(doc);
-            return cat;
         }, function() {});
-          
+        console.log(cat);
     });
+
+    
+    
 };

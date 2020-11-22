@@ -33,7 +33,7 @@ module.exports = () => {
   
     const cat = categoriaController.mostrar();
   
-    res.render("categorias", { cat });
+    res.render("categoriasVer", { cat });
   });
 
   // Rutas para usuario
