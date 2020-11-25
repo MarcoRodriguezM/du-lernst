@@ -38,6 +38,15 @@ module.exports = () => {
     res.render("Tutorias");
   });
 
+
+  router.get("/videostutorias", (req, res, next) => {
+    res.render("VideosTutorias");
+  });
+
+  router.get("/videos", (req, res, next) => {
+    res.render("Videos");
+  });
+
   
 
   router.post("/categorias", (req, res, next) => {
