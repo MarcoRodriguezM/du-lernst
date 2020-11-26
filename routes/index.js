@@ -25,6 +25,10 @@ module.exports = () => {
     res.render("videoscategoria");
   });
 
+  router.get("/sidebar", (req, res, next) => {
+    res.render("sidebar");
+  });
+
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
   });
