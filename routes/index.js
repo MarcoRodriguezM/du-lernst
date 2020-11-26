@@ -39,8 +39,8 @@ module.exports = () => {
   });
 
 
-  router.get("/videostutorias", (req, res, next) => {
-    res.render("VideosTutorias");
+  router.get("/vidprueba", (req, res, next) => {
+    res.render("VidPrueba");
   });
 
   router.get("/videos", (req, res, next) => {
