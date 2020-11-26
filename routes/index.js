@@ -33,6 +33,20 @@ module.exports = () => {
     res.render("informacion");
   });
 
+
+  router.get("/tutorias", (req, res, next) => {
+    res.render("Tutorias");
+  });
+
+
+  router.get("/vidprueba", (req, res, next) => {
+    res.render("VidPrueba");
+  });
+
+  router.get("/videos", (req, res, next) => {
+    res.render("Videos");
+  });
+
   
 
   router.post("/categorias", (req, res, next) => {
