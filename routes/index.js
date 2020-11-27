@@ -101,5 +101,13 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
+
+  router.get(
+    '/subir-videos',
+  authController.verificarInicioSesion,
+  VideoController.formulariovideo
+
+  );
+
   return router;
 };

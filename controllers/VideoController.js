@@ -165,5 +165,5 @@ const upload = multer(configuracionMulter).single("imagen");
 
  
     // console.log(error);
-  }
-};
+
+
