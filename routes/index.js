@@ -17,6 +17,11 @@ module.exports = () => {
   router.get("/categorias", (req, res, next) => {
     res.render("categorias");
   });
+
+  router.get("/cursos", (req, res, next) => {
+    res.render("cursos");
+  });
+
   router.get("/videostutorias", (req, res, next) => {
     res.render("videostutorias");
   });
