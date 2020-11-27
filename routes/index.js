@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
+const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
 const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
