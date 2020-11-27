@@ -107,12 +107,12 @@ module.exports = () => {
   });
 
 
-  router.get(
-    '/subir-videos',
-  authController.verificarInicioSesion,
-  VideoController.formulariovideo
+  // router.get(
+  //   '/subir-videos',
+  // authController.verificarInicioSesion,
+  // VideoController.formulariovideo
 
-  );
+  // );
 
   return router;
 };
