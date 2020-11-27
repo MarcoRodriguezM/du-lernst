@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
+const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
 const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
@@ -28,6 +29,10 @@ module.exports = () => {
   
   router.get("/videoscategoria", (req, res, next) => {
     res.render("videoscategoria");
+  });
+
+  router.get("/sidebar", (req, res, next) => {
+    res.render("sidebar");
   });
 
   router.get("/Asociarse", (req, res, next) => {
