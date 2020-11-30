@@ -16,3 +16,5 @@ mongoose.connection.on("error", (error) => {
 // Importar los modelos requeridos
 require("../models/Usuario");
 require("../models/Categoria");
+require("../models/Video");
+require("../models/Curso");

@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
+const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
 const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
@@ -17,6 +18,11 @@ module.exports = () => {
   router.get("/categorias", (req, res, next) => {
     res.render("categorias");
   });
+
+  router.get("/cursos", (req, res, next) => {
+    res.render("cursos");
+  });
+
   router.get("/videostutorias", (req, res, next) => {
     res.render("videostutorias");
   });
@@ -25,12 +31,30 @@ module.exports = () => {
     res.render("videoscategoria");
   });
 
+  router.get("/sidebar", (req, res, next) => {
+    res.render("sidebar");
+  });
+
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
   });
 
   router.get("/informacion", (req, res, next) => {
     res.render("informacion");
+  });
+
+
+  router.get("/tutorias", (req, res, next) => {
+    res.render("Tutorias");
+  });
+
+
+  router.get("/video", (req, res, next) => {
+    res.render("Video");
+  });
+
+  router.get("/videos", (req, res, next) => {
+    res.render("Videos");
   });
 
   
@@ -91,6 +115,14 @@ module.exports = () => {
   router.get("/administrar", (req, res, next) => {
     res.send("Administración del sitio");
   });
+
+
+  // router.get(
+  //   '/subir-videos',
+  // authController.verificarInicioSesion,
+  // VideoController.formulariovideo
+
+  // );
 
   return router;
 };
