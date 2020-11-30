@@ -48,9 +48,12 @@
 							 <a href="https://web.whatsapp.com" target="_blank" class="button is-light is-large"><i class="fab fa-whatsapp"aria-hidden="true"></i></a>
 						</div>
 					  </div>
-					  
+					
+
+					
 
 					<div class="column is-one-third has-text-left">
+						<form  method="POST" action="/FormularioInformacion"></form>
 						<div class="field">
 							<label class="label">Nombre:</label>
 							<div class="control">
@@ -85,14 +88,20 @@
 						</div>
 
 						<div class="control">
-						 <a href="http://localhost:5000/" class="button is-primary">Enviar</a>
+						 {{!-- <a href="http://localhost:5000/" class="button is-primary">Enviar</a>  --}}
+						<button type="submit" class="button is-primary">Enviar</button>
+
 
 						</div>
 					</div>
+
+		        </form>
 				</div>
 			</div>
 		</div>
+		
 	</section>
+	
 
 </body>
 
