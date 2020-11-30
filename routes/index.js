@@ -63,6 +63,16 @@ module.exports = () => {
     usuarioController.crearCuenta
   );
 
+  router.post("FormularioInformacion", (req, res, next) => {
+
+    const { nombre,email,interes,Opinion,comentarios } = req.body;
+  
+     FormularioInformacion(nombre,email,interes,Opinion,comentarios);
+  
+    
+  });
+  
+
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 
   router.post("/iniciar-sesion", authController.autenticarUsuario);
