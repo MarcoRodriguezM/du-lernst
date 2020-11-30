@@ -12,8 +12,16 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
-    res.render("home");
+    var login = false;
+    if (req.isAuthenticated()) {
+      login = true;
+    }
+    else {
+      login = false;
+    }
+    res.render("home", { login });
   });
+
 
   router.get("/categorias", (req, res, next) => {
     res.render("categorias");
@@ -90,6 +98,8 @@ module.exports = () => {
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 
   router.post("/iniciar-sesion", authController.autenticarUsuario);
+
+  router.get("/salir",authController.cerrarSesion);
 
   router.get("/olvide-password", authController.formularioRestablecerPassword);
 
