@@ -88,6 +88,7 @@ exports.enviarToken = async (req, res, next) => {
       console.log(error);
     }
 
+
     // Redireccionar al inicio de sesión
     messages.push({
       message: "¡Verifica tu bandeja de entrada y sigue las instrucciones!",
@@ -109,6 +110,34 @@ exports.enviarToken = async (req, res, next) => {
     res.redirect("/olvide-password");
   }
 };
+
+
+
+exports.FormularioInformacion = async(nombre,email,interes,Opinion,comentarios) => {
+
+ 
+  try {
+    // Guardar en un correo
+    const sendMail = await enviarCorreo.enviarCorreo({
+      to: usuario.email,
+      subject: "Nueva Solicitud de Asociacion",
+      template: "FormularioInformacion",
+      nombre:nombre,
+      email,
+      interes,
+      Opinion,
+      comentarios
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+
+
+
+
+}
+
 // Mostrar el formulario de cambio de contraseña
 exports.formularioNuevoPassword = async (req, res, next) => {
   const messages = [];
