@@ -45,7 +45,7 @@
         <a class="navbar-item" href="/cursos">
           Explorar Cursos
         </a>
-      {{!-- <div class="navbar-item has-dropdown is-hoverable">
+       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" href="/categorias">
           Categorias
         </a>
@@ -72,14 +72,41 @@
             Ejemplo 7
           </a>
         </div>
-      </div> --}}
+      </div> 
+
     </div>
+
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
           
           <p class="control">
+            
+
+           {{# if login }} 
+                
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="/categorias">
+                Nombre
+              </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                  Perfil
+                </a>
+                <a class="button is-primary" href="/salir">
+                    <span class="icon">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span>Cerrar sesion</span>
+                  </a>
+                
+              </div>
+            </div> 
+             </div>
+
+          </p>
+            {{ else }}
             <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
               <span class="icon">
                 <i class="fas fa-sign-in-alt"></i>
@@ -88,15 +115,18 @@
                 Iniciar sesion
               </span>
             </a>
-          </p>
-          <p class="control">
+           
+            <p class="control">
             <a class="button is-primary" href="/crear-cuenta">
               <span class="icon">
                 <i class="fas fa-user-plus"></i>
               </span>
               <span>Registrarse</span>
             </a>
-          </p>
+           </p>
+           {{/if}}
+
+          
         </div>
       </div>
     </div>
