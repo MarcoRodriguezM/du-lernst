@@ -13,7 +13,10 @@
 
 
   <body>
-    
+     {{!-- Mensajes para el usuario --}}
+              {{> showMessages messages}}
+
+            
     
     <div class="hero is-fullheight content=center " style="margin: -10% 0 0 38%;" >
       <div class="hero-body has-text-centered" >
@@ -31,8 +34,8 @@
               <div class="control">
                 <input class="input is-medium is-rounded" type="password"  name="password" autocomplete="current-password" placeholder="*******" required />
               </div>
-              {{!-- Mensajes para el usuario --}}
-              {{> showMessages messages}}
+              
+             
             </div>
             <br />
            
