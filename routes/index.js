@@ -23,9 +23,7 @@ module.exports = () => {
   });
 
 
-  router.get("/categorias", (req, res, next) => {
-    res.render("categorias");
-  });
+  router.get("/categorias", categoriaController.mostrarCategorias);
 
   router.get("/cursos", (req, res, next) => {
     res.render("cursos");
@@ -63,15 +61,6 @@ module.exports = () => {
 
   router.get("/videos", (req, res, next) => {
     res.render("Videos");
-  });
-
-  
-
-  router.post("/categorias", (req, res, next) => {
-  
-    const cat = categoriaController.mostrar();
-  
-    res.render("categoriasVer", { cat });
   });
 
   // Rutas para usuario
@@ -118,8 +107,6 @@ module.exports = () => {
   router.get("/olvide-password/:token", authController.formularioNuevoPassword);
 
   router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
-
-  router.post("/categorias", categoriaController.mostrar);
 
   // Rutas de administración
   router.get("/administrar", (req, res, next) => {
