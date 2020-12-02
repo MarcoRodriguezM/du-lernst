@@ -41,7 +41,13 @@ module.exports = () => {
 
   router.get("/informacion", (req, res, next) => {
     res.render("informacion");
+
   });
+  router.get("/ManualUsuario", (req, res, next) => {
+    res.render("ManualUsuario");
+  });
+
+
 
 
   router.get("/tutorias", (req, res, next) => {
