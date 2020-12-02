@@ -47,6 +47,7 @@ exports.crearCuenta = async (req, res, next) => {
           email,
           password,
           nombre,
+          rol: "Cursilista"
         });
   
         // Mostrar un mensaje

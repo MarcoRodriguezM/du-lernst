@@ -12,12 +12,26 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
-    res.render("home");
+    var login = false;
+    if (req.isAuthenticated()) {
+      login = true;
+    }
+    else {
+      login = false;
+    }
+    res.render("home", { login });
   });
 
-  router.get("/categorias", (req, res, next) => {
-    res.render("categorias");
-  });
+
+  router.get("/categorias", categoriaController.mostrarCategorias);
+
+  router.get("/ver-rol", authController.verificarRol);
+
+  router.get(
+    "/crear-categoria",
+    authController.verificarInicioSesion,
+    categoriaController.formularioCrearCategoria
+  );
 
   router.get("/cursos", (req, res, next) => {
     res.render("cursos");
@@ -63,15 +77,6 @@ module.exports = () => {
     res.render("Videos");
   });
 
-  
-
-  router.post("/categorias", (req, res, next) => {
-  
-    const cat = categoriaController.mostrar();
-  
-    res.render("categoriasVer", { cat });
-  });
-
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
 
@@ -107,6 +112,8 @@ module.exports = () => {
 
   router.post("/iniciar-sesion", authController.autenticarUsuario);
 
+  router.get("/salir",authController.cerrarSesion);
+
   router.get("/olvide-password", authController.formularioRestablecerPassword);
 
   router.post("/olvide-password", authController.enviarToken);
@@ -114,8 +121,6 @@ module.exports = () => {
   router.get("/olvide-password/:token", authController.formularioNuevoPassword);
 
   router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
-
-  router.post("/categorias", categoriaController.mostrar);
 
   // Rutas de administración
   router.get("/administrar", (req, res, next) => {

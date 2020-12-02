@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const Usuario = mongoose.model("Usuarios");
 const enviarCorreo = require("../handlers/email");
 const { send } = require("process");
+const { request } = require("http");
 
 // Se encarga de autenticar el usuario y de redireccionarlo
 exports.autenticarUsuario = passport.authenticate("local", {
@@ -234,4 +235,22 @@ exports.almacenarNuevaPassword = async (req, res, next) => {
 
     res.redirect("/olvide-password");
   }
+};
+
+// Verifica que el usuario se encuentre autenticado
+exports.verificarInicioSesion = (req, res, next) => {
+  // Si el usuario se encuentra autenticado que siga con el siguiente middleware
+  if (req.isAuthenticated()) return next();
+
+  // Si no se auntenticó, redireccionar al inicio de sesión
+  res.redirect("/iniciar-sesion");
+};
+
+exports.verificarRol = async (req, res, next) => {
+  
+  if (req.isAuthenticated()) {
+    const rolDelUsuarioActivo = await Usuario.findOne({ '_id': req.user._id }, {rol:1, _id:0}).lean();
+    console.log(rolDelUsuarioActivo)
+  }
+
 };
