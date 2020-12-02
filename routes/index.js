@@ -25,6 +25,14 @@ module.exports = () => {
 
   router.get("/categorias", categoriaController.mostrarCategorias);
 
+  router.get("/ver-rol", authController.verificarRol);
+
+  router.get(
+    "/crear-categoria",
+    authController.verificarInicioSesion,
+    categoriaController.formularioCrearCategoria
+  );
+
   router.get("/cursos", (req, res, next) => {
     res.render("cursos");
   });
