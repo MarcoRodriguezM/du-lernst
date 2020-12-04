@@ -13,13 +13,14 @@ module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
 
-    var usuario;
+    /* var usuario;
     
     if (req.isAuthenticated) {
       usuario = authController.usuarioInfo(req);
-    }
+    } */
 
-    res.render("home", { usuario });
+    res.render("home");
+    // res.render("home", { usuario });
   });
 
 
