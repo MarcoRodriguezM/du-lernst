@@ -246,11 +246,32 @@ exports.verificarInicioSesion = (req, res, next) => {
   res.redirect("/iniciar-sesion");
 };
 
-exports.verificarRol = async (req, res, next) => {
-  
-  if (req.isAuthenticated()) {
-    const rolDelUsuarioActivo = await Usuario.findOne({ '_id': req.user._id }, {rol:1, _id:0}).lean();
-    console.log(rolDelUsuarioActivo)
-  }
+// Conseguir la informacion del usuario para mandarlo a las vistas mas facilmente
+exports.usuarioInfo = (req) => {
+  const usuario = [];
+  var admin = false;
+  var cursilista = false;
+  var tutor = false;
+
+    const login = true;
+    const _id = req.user._id;
+    const nombre = req.user.nombre;
+    const email = req.user.email;
+    const rol = req.user.rol;
+    if (rol == "Admin") {
+      admin = true;
+    }
+    else if (rol == "Tutor") {
+      tutor = true;
+    }
+    else if (rol == "Cursilista") {
+      cursilista = true;
+    }
+
+  usuario.push({
+    _id, nombre, email, rol, login, admin, tutor, cursilista
+  });
+
+  return usuario;
 
 };

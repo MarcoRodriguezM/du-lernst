@@ -12,20 +12,18 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
-    var login = false;
-    if (req.isAuthenticated()) {
-      login = true;
+
+    var usuario;
+    
+    if (req.isAuthenticated) {
+      usuario = authController.usuarioInfo(req);
     }
-    else {
-      login = false;
-    }
-    res.render("home", { login });
+
+    res.render("home", { usuario });
   });
 
 
   router.get("/categorias", categoriaController.mostrarCategorias);
-
-  router.get("/ver-rol", authController.verificarRol);
 
   router.get(
     "/crear-categoria",
