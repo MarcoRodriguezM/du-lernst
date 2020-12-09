@@ -24,7 +24,36 @@ module.exports = () => {
   });
 
 
+  // Rutas para categorias
   router.get("/categorias", categoriaController.mostrarCategorias);
+
+  router.get(
+    "/crear-categoria",
+    authController.verificarInicioSesion,
+    categoriaController.formularioCrearCategoria
+  );
+
+  router.post(
+    "/crear-categoria",
+    authController.verificarInicioSesion,
+    // [
+    //   check("imagen", "Debes seleccionar una imagen para el producto")
+    //     .not()
+    //     .isEmpty(),
+    // ],
+    //categoriaController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre de la categoria")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción de la categoria")
+        .not()
+        .isEmpty()
+        .escape(),
+    ],
+    categoriaController.crearCategoria
+  );
 
   router.get(
     "/crear-categoria",

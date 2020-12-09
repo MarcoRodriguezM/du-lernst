@@ -1,18 +1,17 @@
 
 const mongoose = require("mongoose");
-const Categorias = mongoose.model("Categoria");
+const Categoria = mongoose.model("Categoria");
+const { validationResult } = require("express-validator");
 
 exports.mostrarCategorias = async (req, res, next) => {
-    const categorias = await Categorias.find().lean();
+    const categorias = await Categoria.find().lean();
   
     res.render("categoriasVer", { categorias });
   };
 
   // Mostrar el formulario de creación de categorias
 exports.formularioCrearCategoria = (req, res, next) => {
-    res.render("crearCategoria", {
-      year,
-    });
+    res.render("crearCategoria");
   };
   
   // Crear una categoria
@@ -30,13 +29,13 @@ exports.formularioCrearCategoria = (req, res, next) => {
       // Enviar los errores a través de flash messages
       req.flash("messages", messages);
   
-      res.redirect("/crear-categoria");
+      res.redirect("/error");
     } else {
       
       try {
         const { nombre, descripcion } = req.body;
   
-        await Producto.create({
+        await Categoria.create({
           nombre,
           descripcion,
         });
