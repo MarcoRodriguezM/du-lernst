@@ -39,15 +39,20 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Inicio
+      <a href="/">
+        <br>
+        <button class="button is-info">Inicio</button>
       </a>
-        <a class="navbar-item" href="/cursos">
-          Explorar Cursos
-        </a>
+      &nbsp;
+      <a href="cursos">        
+        <br>
+        <button class="button is-info">Explorar Cursos</button>
+      </a>
+       &nbsp;
        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/categorias">
-          Categorias
+        <a href="categorias">        
+        <br>
+        <button class="button is-info">Categorias</button>
         </a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -87,8 +92,9 @@
            {{# if login }} 
                 
             <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link" href="/categorias">
-                Nombre
+              <a href="cursos">        
+                <br>
+                <button class="button is-info">Nombre</button>
               </a>
               <div class="navbar-dropdown is-boxed">
                 <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -124,11 +130,12 @@
             </a>
            
             <p class="control">
-            <a class="button is-primary" href="/crear-cuenta">
-              <span class="icon">
+            <a href="crear-cuenta">              
+              
+              <button class="button is-info">
+                <span class="icon">
                 <i class="fas fa-user-plus"></i>
-              </span>
-              <span>Registrarse</span>
+              </span> &nbsp;&nbsp;Registrarse</button>
             </a>
            </p>
            {{/if}}
@@ -173,7 +180,7 @@
 
 <style>
   body{
-    background-image: url("https://i.postimg.cc/3JFDS8ZP/gif.gif");
+    background-image: url("https://i.postimg.cc/xCY1077H/fondo.jpg");
     background-size: cover;
   }
   .navbar {
