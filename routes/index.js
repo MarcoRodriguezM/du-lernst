@@ -13,11 +13,11 @@ module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
 
-     var usuario;
-     var login;
-    if (req.isAuthenticated) {
+     /* var usuario; */
+     var login = false;
+    if (req.isAuthenticated()) {
       login = true;
-      usuario = authController.usuarioInfo(req);
+      /* usuario = authController.usuarioInfo(req); */
     }
 
     /*res.render("home");*/
