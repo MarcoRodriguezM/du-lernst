@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const Usuario = mongoose.model("Usuarios");
 const enviarCorreo = require("../handlers/email");
 const { send } = require("process");
+const { request } = require("http");
 
 // Se encarga de autenticar el usuario y de redireccionarlo
 exports.autenticarUsuario = passport.authenticate("local", {
@@ -88,6 +89,7 @@ exports.enviarToken = async (req, res, next) => {
       console.log(error);
     }
 
+
     // Redireccionar al inicio de sesión
     messages.push({
       message: "¡Verifica tu bandeja de entrada y sigue las instrucciones!",
@@ -109,6 +111,34 @@ exports.enviarToken = async (req, res, next) => {
     res.redirect("/olvide-password");
   }
 };
+
+
+
+exports.FormularioInformacion = async(nombre,email,interes,Opinion,comentarios) => {
+
+ 
+  try {
+    // Guardar en un correo
+    const sendMail = await enviarCorreo.enviarCorreo({
+      to: usuario.email,
+      subject: "Nueva Solicitud de Asociacion",
+      template: "FormularioInformacion",
+      nombre:nombre,
+      email,
+      interes,
+      Opinion,
+      comentarios
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+
+
+
+
+}
+
 // Mostrar el formulario de cambio de contraseña
 exports.formularioNuevoPassword = async (req, res, next) => {
   const messages = [];
@@ -205,4 +235,43 @@ exports.almacenarNuevaPassword = async (req, res, next) => {
 
     res.redirect("/olvide-password");
   }
+};
+
+// Verifica que el usuario se encuentre autenticado
+exports.verificarInicioSesion = (req, res, next) => {
+  // Si el usuario se encuentra autenticado que siga con el siguiente middleware
+  if (req.isAuthenticated()) return next();
+
+  // Si no se auntenticó, redireccionar al inicio de sesión
+  res.redirect("/iniciar-sesion");
+};
+
+// Conseguir la informacion del usuario para mandarlo a las vistas mas facilmente
+exports.usuarioInfo = (req) => {
+  const usuario = [];
+  var admin = false;
+  var cursilista = false;
+  var tutor = false;
+
+    const login = true;
+    const _id = req.user._id;
+    const nombre = req.user.nombre;
+    const email = req.user.email;
+    const rol = req.user.rol;
+    if (rol == "Admin") {
+      admin = true;
+    }
+    else if (rol == "Tutor") {
+      tutor = true;
+    }
+    else if (rol == "Cursilista") {
+      cursilista = true;
+    }
+
+  usuario.push({
+    _id, nombre, email, rol, login, admin, tutor, cursilista
+  });
+
+  return usuario;
+
 };

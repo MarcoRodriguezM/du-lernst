@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
+const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
 const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
@@ -11,12 +12,31 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
-    res.render("home");
+
+     /* var usuario; */
+     var login = false;
+    if (req.isAuthenticated()) {
+      login = true;
+      /* usuario = authController.usuarioInfo(req); */
+    }
+
+    /*res.render("home");*/
+     res.render("home", { login });
   });
 
-  router.get("/categorias", (req, res, next) => {
-    res.render("categorias");
+
+  router.get("/categorias", categoriaController.mostrarCategorias);
+
+  router.get(
+    "/crear-categoria",
+    authController.verificarInicioSesion,
+    categoriaController.formularioCrearCategoria
+  );
+
+  router.get("/cursos", (req, res, next) => {
+    res.render("cursos");
   });
+
   router.get("/videostutorias", (req, res, next) => {
     res.render("videostutorias");
   });
@@ -25,13 +45,23 @@ module.exports = () => {
     res.render("videoscategoria");
   });
 
+  router.get("/sidebar", (req, res, next) => {
+    res.render("sidebar");
+  });
+
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
   });
 
   router.get("/informacion", (req, res, next) => {
     res.render("informacion");
+
   });
+  router.get("/ManualUsuario", (req, res, next) => {
+    res.render("ManualUsuario");
+  });
+
+
 
 
   router.get("/tutorias", (req, res, next) => {
@@ -39,21 +69,12 @@ module.exports = () => {
   });
 
 
-  router.get("/vidprueba", (req, res, next) => {
-    res.render("VidPrueba");
+  router.get("/video", (req, res, next) => {
+    res.render("Video");
   });
 
   router.get("/videos", (req, res, next) => {
     res.render("Videos");
-  });
-
-  
-
-  router.post("/categorias", (req, res, next) => {
-  
-    const cat = categoriaController.mostrar();
-  
-    res.render("categoriasVer", { cat });
   });
 
   // Rutas para usuario
@@ -77,9 +98,21 @@ module.exports = () => {
     usuarioController.crearCuenta
   );
 
+  router.post("FormularioInformacion", (req, res, next) => {
+
+    const { nombre,email,interes,Opinion,comentarios } = req.body;
+  
+     FormularioInformacion(nombre,email,interes,Opinion,comentarios);
+  
+    
+  });
+  
+
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 
   router.post("/iniciar-sesion", authController.autenticarUsuario);
+
+  router.get("/salir",authController.cerrarSesion);
 
   router.get("/olvide-password", authController.formularioRestablecerPassword);
 
@@ -89,12 +122,18 @@ module.exports = () => {
 
   router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
 
-  router.post("/categorias", categoriaController.mostrar);
-
   // Rutas de administración
   router.get("/administrar", (req, res, next) => {
     res.send("Administración del sitio");
   });
+
+
+  // router.get(
+  //   '/subir-videos',
+  // authController.verificarInicioSesion,
+  // VideoController.formulariovideo
+
+  // );
 
   return router;
 };

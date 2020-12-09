@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const Categorias = mongoose.model("Categoria");
 
 exports.mostrarCategorias = async (req, res, next) => {
-    const categorias = await Categorias.find().lean();
+    const cursos = await Categorias.find().lean();
   
-    res.render("categoriasVer", { categorias });
+    res.render("explorarCursos", { categorias: cursos });
   };
 
   // Mostrar el formulario de creación de categorias

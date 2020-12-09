@@ -21,6 +21,11 @@ const usuarioSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  rol: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   ciudad: String,
   pais: String,
   token: String,

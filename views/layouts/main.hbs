@@ -27,7 +27,7 @@
   <header>  
   <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
+    <a class="navbar-item" href="/">
       <img src="https://i.postimg.cc/SstF0wQS/dulernst-fw.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
     </a>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
@@ -39,15 +39,20 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Home
+      <a href="/">
+        <br>
+        <button class="button is-info">Inicio</button>
       </a>
-        <a class="navbar-item" href="/">
-          Explorar Cursos
-        </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/categorias">
-          Categorias
+      &nbsp;
+      <a href="cursos">        
+        <br>
+        <button class="button is-info">Explorar Cursos</button>
+      </a>
+       &nbsp;
+       <div class="navbar-item has-dropdown is-hoverable">
+        <a href="categorias">        
+        <br>
+        <button class="button is-info">Categorias</button>
         </a>
         <div class="navbar-dropdown is-boxed">
           <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -68,45 +73,74 @@
           <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
             Ejemplo 6
           </a>
-          {{!-- <hr class="navbar-divider"> --}}
           <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
             Ejemplo 7
           </a>
         </div>
-      </div>
+      </div> 
+
     </div>
+
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
+          
           <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
-              <span class="icon">
-                <i class="fab fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-            </a>
+            
+
+           {{# if login }} 
+                
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="cursos">        
+                <br>
+                <button class="button is-info">Nombre</button>
+              </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                  Perfil
+                </a>
+                <a class="button is-primary" href="/salir">
+                    <span class="icon">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span>Cerrar sesion</span>
+                  </a>
+
+                  <a class="button is-primary" href="/ver-rol">
+                    <span class="icon">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span>Ver Rol</span>
+                  </a>
+                
+              </div>
+            </div> 
+             </div>
+
           </p>
-          <p class="control">
+            {{ else }}
             <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
               <span class="icon">
                 <i class="fas fa-sign-in-alt"></i>
               </span>
               <span>
-                Iniciar Sesion
+                Iniciar sesion
               </span>
             </a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="/crear-cuenta">
-              <span class="icon">
+           
+            <p class="control">
+            <a href="crear-cuenta">              
+              
+              <button class="button is-info">
+                <span class="icon">
                 <i class="fas fa-user-plus"></i>
-              </span>
-              <span>Registrarse</span>
+              </span> &nbsp;&nbsp;Registrarse</button>
             </a>
-          </p>
+           </p>
+           {{/if}}
+
+          
         </div>
       </div>
     </div>
@@ -146,7 +180,7 @@
 
 <style>
   body{
-    background-image: url("https://userscontent2.emaze.com/images/4b20e1bb-e309-41a4-b4e9-e6f7e55d7b97/635462281391468165_Fondoabstractoconcolorespastelesendiagonal-344435.jpg");
+    background-image: url("https://i.postimg.cc/xCY1077H/fondo.jpg");
     background-size: cover;
   }
   .navbar {
