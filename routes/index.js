@@ -72,6 +72,11 @@ module.exports = () => {
   router.get("/video", (req, res, next) => {
     res.render("Video");
   });
+  router.get("/perfil", (req, res, next) => {
+    res.render("perfil");
+
+  });
+
 
   router.get("/videos", (req, res, next) => {
     res.render("Videos");
