@@ -9,13 +9,13 @@ const year = new Date().getFullYear();
 
 // Mostrar el formulario de video
 exports.formulariovideo = (req, res, next) => {
-  res.render("subirVideos", {
+  res.render("subirCursos", {
     year,
   });
 };
 
-// Crear un producto
-exports.crearProducto = async (req, res, next) => {
+// Crear un curso
+exports.subirCursos = async (req, res, next) => {
   // Verificar que no existen errores de validación
   const errores = validationResult(req);
   const messages = [];
@@ -29,27 +29,27 @@ exports.crearProducto = async (req, res, next) => {
     // Enviar los errores a través de flash messages
     req.flash("messages", messages);
 
-    res.redirect("/crear-producto");
+    res.redirect("/crear- curso");
   } else {
-    // Almacenar los valores del producto
+    // Almacenar los valores del curso
     try {
       const { nombre, descripcion, precio, estado } = req.body;
 
-      await Producto.create({
+      await Video.create({
         nombre,
         descripcion,
         precio,
-        imagen: req.file.filename,
+        video: req.file.filename,
         vendedor: req.user._id,
       });
 
       messages.push({
-        message: "¡Producto agregado correctamente!",
+        message: "¡Video agregado correctamente!",
         alertType: "success",
       });
       req.flash("messages", messages);
 
-      res.redirect("/crear-producto");
+      res.redirect("/crear-curso");
     } catch (error) {
       console.log(error);
       messages.push({
@@ -63,7 +63,7 @@ exports.crearProducto = async (req, res, next) => {
 };
 
 // Permite subir un archivo (imagen) al servidor
-exports.subirImagen = (req, res, next) => {
+exports.subirVideo = (req, res, next) => {
   // Verificar que no existen errores de validación
   // const errores = validationResult(req);
   // const errores = [];
@@ -87,7 +87,7 @@ exports.subirImagen = (req, res, next) => {
           req.flash("messages", [
             {
               message:
-                "El tamaño del archivo es superior al límite. Máximo 300Kb",
+                "El tamaño del archivo es superior al límite. Máximo 500Kb",
               alertType: "danger",
             },
           ]);
@@ -103,7 +103,7 @@ exports.subirImagen = (req, res, next) => {
         ]);
       }
       // Redireccionar y mostrar el error
-      res.redirect("/crear-producto");
+      res.redirect("/crear-curso");
       return;
     } else {
       // Archivo cargado correctamente
@@ -135,13 +135,13 @@ const configuracionMulter = {
   // Verificar el tipo de archivo mediante el mime type
   // https://developer.mozilla.org/es/docs/Web/HTTP/Basics_of_HTTP/MIME_types
   fileFilter(req, file, cb) {
-    if (file.mimetype === "video/p" || file.mimetype === "image/jpeg") {
+    if (file.mimetype === "video/p" || file.mimetype === "Matematicas") {
       // Si el callback retorne true se acepta el tipo de archivo
       cb(null, true);
     } else {
       cb(
         new Error(
-          "Formato de archivo no válido. Solamente se permniten JPEG/JPG o PNG"
+          "Formato de archivo no válido."
         ),
         false
       );
@@ -152,7 +152,7 @@ const configuracionMulter = {
 
 
 // Función que sube el archivo
-const upload = multer(configuracionMulter).single("imagen");
+const upload = multer(configuracionMulter).single("video");
 
 
 
