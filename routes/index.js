@@ -92,9 +92,34 @@ module.exports = () => {
     res.render("videoscategoria");
   });
 
-  router.get("/sidebar", (req, res, next) => {
-    res.render("sidebar");
-  });
+  // Rutas para cursos
+  router.get(
+    "/crear-curso",
+    authController.verificarInicioSesion,
+    cursosController.formularioCrearCurso
+  );
+
+  router.post(
+    "/crear-curso",
+    authController.verificarInicioSesion,
+    // [
+    //   check("imagen", "Debes seleccionar una imagen para el producto")
+    //     .not()
+    //     .isEmpty(),
+    // ],
+    cursosController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+    ],
+    cursosController.crearCurso
+  );
 
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
@@ -108,21 +133,14 @@ module.exports = () => {
     res.render("ManualUsuario");
   });
 
-
-
-
-  router.get("/tutorias", (req, res, next) => {
-    res.render("Tutorias");
-  });
-
-
-  router.get("/video", (req, res, next) => {
-    res.render("Video");
-  });
-
   router.get("/videos", (req, res, next) => {
     res.render("Videos");
   });
+
+  router.get("/subircursos", (req, res, next) => {
+    res.render("subirCursos");
+  });
+
 
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
@@ -174,13 +192,18 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
+  //Rutas para Cursos-Videos
+router.get(
+  "/crear producto" ,
+  authController.verificarInicioSesion,
+  (req, res, next) => {
+    res,render("subirCursos");
+  }
+);
+return router;
 
-  // router.get(
-  //   '/subir-videos',
-  // authController.verificarInicioSesion,
-  // VideoController.formulariovideo
 
-  // );
 
-  return router;
+  
 };
+

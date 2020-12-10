@@ -1,0 +1,59 @@
+<div class="main">
+  <div class="section">
+    <div class="container">
+      <h3>Agrega tu Curso</h3>
+      <div>
+        {{!-- Mensajes para el usuario --}}
+        {{> showMessages messages}}
+        <form action="/crear-curso" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <h6>Imagen para el curso</h6>
+              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+                  <img src="https://i.postimg.cc/SstF0wQS/dulernst-fw.png" alt="...">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"
+                  style="max-width: 370px; max-height: 250px;"></div>
+                <div>
+                  <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">Selecciona una
+                      imagen</span><br>
+                      <input type="file" name="imagen"></span>
+                  <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i
+                      class="fa fa-times"></i> Quitar</a>
+                </div>
+              </div>
+              
+              
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <div class="form-group">
+                <h6>Nombre <span class="icon-danger">*</span></h6>
+                <input type="text" class="form-control border-input" placeholder="iPhone 12 Pro Max" name="nombre">
+              </div>
+              <div class="form-group">
+                <h6>Descripción <span class="icon-danger">*</span></h6>
+                    <textarea class="form-control textarea-limited" placeholder="128GB, gold..." rows="13"
+                      maxlength="250" name="descripcion"></textarea>
+                    <h5><small><span id="textarea-limited-message" class="pull-right">1000 caracteres
+                          máximo</span></small>
+                    </h5>
+              </div>
+            </div>
+          </div>
+          <div class="row buttons-row">
+            <div class="col-md-4 col-sm-4">
+              <button class="btn btn-outline-danger btn-block btn-round" type="reset">Cancelar</button>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <button class="btn btn-outline-primary btn-block btn-round" type="submit">Guardar</button>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <button class="btn btn-primary btn-block btn-round" type="submit">Guardar & publicar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
