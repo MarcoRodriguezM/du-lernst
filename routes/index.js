@@ -13,18 +13,9 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
-
-     /* var usuario; */
-     var login = false;
-    if (req.isAuthenticated()) {
-      login = true;
-      /* usuario = authController.usuarioInfo(req); */
-    }
-
-    /*res.render("home");*/
-     res.render("home", { login });
+    
+     res.render("home", { login: authController.verificarInicioSesion ? true : false, usuario: res.locals.user });
   });
-
 
   // Rutas para categorias
   router.get("/categorias", categoriaController.mostrarCategorias);
