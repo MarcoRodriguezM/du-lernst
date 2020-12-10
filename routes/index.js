@@ -92,6 +92,44 @@ module.exports = () => {
     cursosController.crearCurso
   );
 
+//Rutas Videos
+  router.get("/videostutorias", (req, res, next) => {
+    res.render("videostutorias");
+  });
+  
+  router.get("/videoscategoria", (req, res, next) => {
+    res.render("videoscategoria");
+  });
+
+  // Rutas para cursos
+  router.get(
+    "/crear-curso",
+    authController.verificarInicioSesion,
+    cursosController.formularioCrearCurso
+  );
+
+  router.post(
+    "/crear-curso",
+    authController.verificarInicioSesion,
+    // [
+    //   check("imagen", "Debes seleccionar una imagen para el producto")
+    //     .not()
+    //     .isEmpty(),
+    // ],
+    cursosController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+    ],
+    cursosController.crearCurso
+  );
+
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
   });

@@ -1,50 +1,30 @@
 <div class="main">
   <div class="section">
     <div class="container">
-      <h3>Agrega tu producto</h3>
+      <h3>Agrega tu Curso</h3>
       <div>
         {{!-- Mensajes para el usuario --}}
         {{> showMessages messages}}
-        <form action="/crear-producto" method="POST" enctype="multipart/form-data">
+        <form action="/crear-curso" method="POST" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-5 col-sm-5">
-              <h6>Imagen del producto</h6>
+              <h6>Imagen para el curso</h6>
               <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                 <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
-                  <img src="//" alt="...">
+                  <img src="https://i.postimg.cc/SstF0wQS/dulernst-fw.png" alt="...">
                 </div>
                 <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"
                   style="max-width: 370px; max-height: 250px;"></div>
                 <div>
-                  <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">Seleccione un
-                      video</span><span class="fileinput-exists">Cambiar</span><input type="file" name="video"></span>
+                  <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">Selecciona una
+                      imagen</span><br>
+                      <input type="file" name="imagen"></span>
                   <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i
                       class="fa fa-times"></i> Quitar</a>
                 </div>
               </div>
-              <h6>Etiquetas</h6>
-              <div id="tags">
-                <input class="tagsinput" data-color="success" type="text" data-role="tagsinput"
-                  placeholder="etiquetas separadas por coma" />
-                {{!-- <div class="tagsinput-add"></div> --}}
-                <!-- You can change "tag-primary" with with "tag-info", "tag-success", "tag-warning","tag-danger" -->
-              </div>
-              <h6>Estado <span class="icon-danger">*</span></h6>
-              <div class="form-check-radio">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="estadoEnCurso" id="estadoCurso" value="en curso">
-                  En Curso
-                  <span class="form-check-sign"></span>
-                </label>
-              </div>
-              <div class="form-check-radio">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="estadoFinalizado" id="estadoFinalizado" value="Finalizado"
-                    checked>
-                  Finalizado
-                  <span class="form-check-sign"></span>
-                </label>
-              </div>
+              
+              
             </div>
             <div class="col-md-7 col-sm-7">
               <div class="form-group">
@@ -52,16 +32,7 @@
                 <input type="text" class="form-control border-input" placeholder="iPhone 12 Pro Max" name="nombre">
               </div>
               <div class="form-group">
-                <h6>Precio <span class="icon-danger">*</span></h6>
-                <div class="input-group border-input">
-                  <input type="text" value="" placeholder="40000" class="form-control border-input" name="precio">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-money-bill-alt"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <h6>Descripción <span class="icon-danger">*</span< /h6>
+                <h6>Descripción <span class="icon-danger">*</span></h6>
                     <textarea class="form-control textarea-limited" placeholder="128GB, gold..." rows="13"
                       maxlength="250" name="descripcion"></textarea>
                     <h5><small><span id="textarea-limited-message" class="pull-right">1000 caracteres
