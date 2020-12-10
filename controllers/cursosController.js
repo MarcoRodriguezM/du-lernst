@@ -5,6 +5,7 @@ const Curso = mongoose.model("Curso");
 const { validationResult } = require("express-validator");
 const multer = require("multer");
 const shortid = require("shortid");
+const slug = require("slug");
 
 //const year = new Date().getFullYear();
 
