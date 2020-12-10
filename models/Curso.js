@@ -19,16 +19,16 @@ const cursoSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
   },
-  owner: {
+  tutor: {
     type: mongoose.Schema.ObjectId,
     ref: "Usuarios",
     required: true,
   },
-  categoria: {
+  /*categoria: {
     type: mongoose.Schema.ObjectId,
     ref: "Categoria",
     required: true,
-  },
+  },*/
 });
 // Hooks para generar la URL de la categoria
 cursoSchema.pre("save", function (next) {
