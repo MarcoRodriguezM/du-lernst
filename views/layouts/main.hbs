@@ -90,11 +90,11 @@
             
 
            {{# if login }} 
-                
+            {{#each usuario as |user|}}    
             <div class="navbar-item has-dropdown is-hoverable">
               <a href="cursos">        
                 <br>
-                <button class="button is-info">Nombre</button>
+                <button class="button is-info">{{user.nombre}}</button>
               </a>
               <div class="navbar-dropdown is-boxed">
                 <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -117,7 +117,7 @@
               </div>
             </div> 
              </div>
-
+            {{/each}}
           </p>
             {{ else }}
             <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
