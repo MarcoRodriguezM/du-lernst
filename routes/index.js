@@ -3,6 +3,7 @@ const express = require("express");
 const usuarioController = require("../controllers/usuarioController");
 const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
+const cursosController = require("../controllers/cursosController");
 const categoriaController = require("../controllers/categoriaController");
 const { check } = require("express-validator");
 
@@ -56,16 +57,42 @@ module.exports = () => {
     categoriaController.crearCategoria
   );
 
+  /*router.get("/cursos", (req, res, next) => {
+    res.render("cursos");
+  });*/
+
+  router.get("/explorarCursos", cursosController.explorarCursos);
+
+  // Rutas para cursos
   router.get(
-    "/crear-categoria",
+    "/crear-curso",
     authController.verificarInicioSesion,
-    categoriaController.formularioCrearCategoria
+    cursosController.formularioCrearCurso
   );
 
-  router.get("/cursos", (req, res, next) => {
-    res.render("cursos");
-  });
+  router.post(
+    "/crear-curso",
+    authController.verificarInicioSesion,
+    // [
+    //   check("imagen", "Debes seleccionar una imagen para el producto")
+    //     .not()
+    //     .isEmpty(),
+    // ],
+    cursosController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del curso")
+        .not()
+        .isEmpty()
+        .escape(),
+    ],
+    cursosController.crearCurso
+  );
 
+//Rutas Videos
   router.get("/videostutorias", (req, res, next) => {
     res.render("videostutorias");
   });
