@@ -16,10 +16,14 @@
             </form>
             <h6 class="text-muted">¿Es esto lo que búscas?</h6>
             <div class="row add-row">
-              {{#each categorias as |categoria|}}
+              {{#each cursos as |curso|}}
               <div class="col-md-4 col-sm-4">
-                <h5>{{categoria.nombre}}</h5>
-                <p>{{categoria.descripcion}}</p>
+                <h5>{{curso.nombre}}</h5>
+                <p>{{curso.descripcion}}</p>
+                {{!-- <div class="col-md-3 ml-auto col-sm-4"> --}}
+                <img src="uploads/cursos/{{imagen}}" class="img-responsive" />
+                {{!-- </div> --}}
+                <a href="/curso/{{curso.url}}" class="btn btn-secondary btn-round">Ver más</a>
               </div>
               {{/each}}
             </div>
@@ -28,9 +32,6 @@
             </div>
           </div>
         </div>
-        <form action="/crear-categoria" method="get">
-  <button type="submit" class="btn btn-success">Agregar Categorias</button>
-</form>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
+const { resolveSoa } = require("dns");
 
 // Habilitar el archivo de variables de entorno
 require("dotenv").config({ path: ".env" });
@@ -50,6 +51,7 @@ app.use(flash());
 // Midleware personalizado para agregar mensajes flash
 app.use((req, res, next) => {
   res.locals.messages = req.flash();
+  res.locals.user = req.user;
   next();
 });
 
