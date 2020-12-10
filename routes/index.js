@@ -14,7 +14,7 @@ module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
     
-     res.render("home", { login: req.isAuthenticated ? true : false, usuario: authController.usuarioInfo(req) });
+     res.render("home", { login: req.isAuthenticated, usuario: authController.usuarioInfo(req) });
   });
 
   // Rutas para categorias
