@@ -85,12 +85,12 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-          
-          <p class="control">
-            
 
            {{# if login }} 
-            {{#each usuario as |user|}}    
+            {{#each usuario as |user|}}
+
+          <p class="control">
+            
             <div class="navbar-item has-dropdown is-hoverable">
               <a href="cursos">        
                 <br>
@@ -117,9 +117,11 @@
               </div>
             </div> 
              </div>
-            {{/each}}
+            
           </p>
+          {{/each}}
             {{ else }}
+            <p class="control">
             <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
               <span class="icon">
                 <i class="fas fa-sign-in-alt"></i>
@@ -128,7 +130,7 @@
                 Iniciar sesion
               </span>
             </a>
-           
+           </p>
             <p class="control">
             <a href="crear-cuenta">              
               
