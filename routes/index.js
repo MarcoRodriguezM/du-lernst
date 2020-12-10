@@ -140,6 +140,11 @@ module.exports = () => {
   router.get("/subircursos", (req, res, next) => {
     res.render("subirCursos");
   });
+  router.get("/perfil", (req, res, next) => {
+    res.render("perfil");
+
+  });
+
 
 
   // Rutas para usuario
