@@ -16,6 +16,10 @@ const cursoSchema = new mongoose.Schema({
     trim: true,
   },
   imagen: String,
+  precio: {
+    type: Number,
+    required: true,
+  },
   url: {
     type: String,
     lowercase: true,

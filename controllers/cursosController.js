@@ -40,11 +40,12 @@ exports.crearCurso = async (req, res, next) => {
   } else {
     // Almacenar los valores del curso
     try {
-      const { nombre, descripcion } = req.body;
+      const { nombre, descripcion, precio } = req.body;
 
       await Curso.create({
         nombre,
         descripcion,
+        precio,
         imagen: req.file.filename,
         tutor: req.user._id,
       });

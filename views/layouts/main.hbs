@@ -55,27 +55,11 @@
           <strong>Categorias</strong>
         </a>
         <div class="navbar-dropdown is-boxed">
+          {{#each categorias as |categoria|}}
           <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-            Ejemplo 1
+            {{categoria.nombre}}
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-            Ejemplo 2
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-            Ejemplo 3
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-            Ejemplo 4
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-            Ejemplo 5
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-            Ejemplo 6
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
-            Ejemplo 7
-          </a>
+          {{/each}}
         </div>
       </div> 
 
