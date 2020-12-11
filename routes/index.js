@@ -140,10 +140,24 @@ module.exports = () => {
   router.get("/subircursos", (req, res, next) => {
     res.render("subirCursos");
   });
-  router.get("/perfil", (req, res, next) => {
-    res.render("perfil");
 
-  });
+  router.get(
+    "/perfil",
+    authController.verificarInicioSesion,
+    usuarioController.verPerfilUsuario
+  );
+  
+  /*router.post(
+    "/perfil",
+    authController.verificarInicioSesion,
+    // Sanitizando
+    check("nombre").not().isEmpty(),
+    usuarioController.actualizarPerfil
+  );*/
+  // Ver contenido de la leccion
+
+
+
 
 
 

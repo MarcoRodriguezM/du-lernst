@@ -25,38 +25,37 @@
      </ul>
      </aside>             
  </div>
- <div class="column is-9">
+ 
+               <div class="column is-8">
                 <section class="hero is-info welcome is-small">
                     <div class="hero-body">
                         <div class="container">
-                         <div class="container">
 
- <div class="column is-3">
-          
-            <div class="card-image">
-             
-                     
+
+
+                            
+                           
+                           <section class="info-tiles">
+                    <div class="tile is-ancestor has-text-centered">
+                      <div class="column is-3">
+            <div class="card-image">    
                 <img src="https://source.unsplash.com/6Ticnhs1AG0" >
-            </div>
-            <div class="card-content">
-           <p class="subtitle">Ayudaaaa </p>
-            </div>
-          </div>
-        </div>
-
-                        </div>
+            </div>  
+             
+            
                     </div>
                 </section>
                 <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                             
+              
                           
                 </section>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="columns">
                     <div class="column is-6">
-                        <div class="card events-card">
+                       
                             <header class="card-header">
                                 <p class="card-header-title">
                                     Datos Personales
@@ -67,44 +66,100 @@
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </span>
                 </a>
-                            </header>
+             </header>
+
                            
-                            <div class="card-table">
-                                <div class="content">
+                                             
+     <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                        
-   
-                                        <tbody>
-                                            <tr>
-                                                
-                                                <td>Identificacion:</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                            </tr>
-                                            <tr>
-                                               
-                                                <td>Nombre:</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                            </tr>
-                                            <tr>
-                                                  <td>Apellido:</td>
-                                                   <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                              
-                                            </tr>
-                                            <tr>
-                                               
-                                                <td>Telefono:</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                            </tr>
-                                            <tr>
-                                              
-                                                <td>Correo:</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                            </tr>
-                                              <td>Contraseña:</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="#"></a></td>
-                                            </tr>
-                                            <tr>
-                        
+   <div class="form-group">
+          <label for="nombre" class="font-weight-bold">
+            Nombre:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombre"
+            id="nombre"
+            value="{{usuario.nombre}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="apellido" class="font-weight-bold">
+            Apellido:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="apellido"
+            id="apellido"
+            value="{{usuario.apellido}}"
+          />
+        </div>
+ <div class="form-group">
+          <label for="telefono" class="font-weight-bold">
+            Telefono:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="Telefono"
+            id="Telefono"
+            value="{{usuario.telefono}}"
+          />
+        </div>
+
+ <div class="form-group">
+          <label for="Direccion" class="font-weight-bold">
+            Direccion:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="Direccio"
+            id="Direccion"
+            value="{{usuario.direccion}}"
+          />
+        </div>
+
+
+        <div class="form-group">
+          <label for="email" class="font-weight-bold">
+            Correo Electrónico:
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="correo@ejemplo.com"
+            value="{{usuario.email}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="usuario:" class="font-weight-bold">
+            Usuario:
+          </label>
+          <input
+            type="usuario"
+            class="form-control"
+            name="usuario"
+            id="usuario"
+            placeholder=""
+            value="{{usuario.usuario}}"
+          />
+          <br>
+        </div>
+       <div class="compose has-text-centered">
+                    <a class="button is-danger is-block is-bold">
+
+            <span class="Guardar">Guardar</span>
+          </a>
+                </div>
+      </form>
+        
+                                       
                                         </tbody>
                                     </table>
                                 </div>
