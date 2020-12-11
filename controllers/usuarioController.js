@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const Usuario = mongoose.model("Usuarios");
 const { validationResult } = require("express-validator");
+const authController = require("../controllers/authController");
 
 const year = new Date().getFullYear();
 
@@ -80,10 +81,11 @@ exports.crearCuenta = async (req, res, next) => {
   };
 
   exports.verPerfilUsuario = async (req, res, next) => {
-    const usuario = res.locals.usuario;
+    const usuario = authController.usuarioInfo(req);
     const verifyAuth = true;
     res.render("perfil", { usuario, verifyAuth });
   };
+
   exports.actualizarPerfil = async (req, res, next) => {
     const mensajes = [];
     const usuarioSesion = res.locals.usuario;
