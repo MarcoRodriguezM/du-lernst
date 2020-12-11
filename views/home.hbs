@@ -11,6 +11,7 @@
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
+    <link rel="stylesheet" href="../public/uploads/cursos/js/carousel.js">
 
     <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +24,42 @@
 <body>
   
  <!-- Inicio de Imagen -->  
+ <!-- Inicio de Carousel-->
+     <div class='carousel is-5 carousel-animated carousel-animate-slide'>
+  <div class='carousel-container'>
+    <div class='carousel-item is-active'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/br5MR4w1/cocina-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/WpYQjqwt/costura-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/FRsBXhfj/dise-o-grafico-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/v8KSCFGV/programacion-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/W1yyLBGK/musica-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/ZRxjR2NJ/evanisteria-fw.png"></figure>
+    </div>
+    <div class='carousel-item'>
+      <figure class="image is-2by1"><img src="https://i.postimg.cc/W3T6Q8HC/cod-bo-fw.png"></figure>
+    </div>
+  </div>
+  <div class="carousel-navigation is-centered">
+    <div class="carousel-nav-left">
+      <i class="fas fa-chevron-left" aria-hidden="true"></i>
+    </div>
+    <div class="carousel-nav-right">
+      <i class="fas fa-chevron-right" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>           
+<!-- Fin de Carousel -->  
+
 
 <!-- No tocar desde aqui (Estirar la imagen)-->
        <div class="navbar-dropdown is-boxed">                        
@@ -40,6 +77,11 @@
         </figure>
     </section>
 <!-- Fin de Imagen -->  
+
+
+
+
+  
 
 
 <!-- Inicio -->  
@@ -273,9 +315,224 @@
       });
     </script>
 		
+
+    
 </html>
 
 </body>
+
+
+
+
+
+
+
+
+
+<script>
+  var $jscomp = { scope: {} };
+$jscomp.defineProperty =
+  "function" == typeof Object.defineProperties
+    ? Object.defineProperty
+    : function (a, b, c) {
+        if (c.get || c.set)
+          throw new TypeError("ES3 does not support getters and setters.");
+        a != Array.prototype && a != Object.prototype && (a[b] = c.value);
+      };
+$jscomp.getGlobal = function (a) {
+  return "undefined" != typeof window && window === a
+    ? a
+    : "undefined" != typeof global && null != global
+    ? global
+    : a;
+};
+$jscomp.global = $jscomp.getGlobal(this);
+$jscomp.SYMBOL_PREFIX = "jscomp_symbol_";
+$jscomp.initSymbol = function () {
+  $jscomp.initSymbol = function () {};
+  $jscomp.global.Symbol || ($jscomp.global.Symbol = $jscomp.Symbol);
+};
+$jscomp.symbolCounter_ = 0;
+$jscomp.Symbol = function (a) {
+  return $jscomp.SYMBOL_PREFIX + (a || "") + $jscomp.symbolCounter_++;
+};
+$jscomp.initSymbolIterator = function () {
+  $jscomp.initSymbol();
+  var a = $jscomp.global.Symbol.iterator;
+  a || (a = $jscomp.global.Symbol.iterator = $jscomp.global.Symbol("iterator"));
+  "function" != typeof Array.prototype[a] &&
+    $jscomp.defineProperty(Array.prototype, a, {
+      configurable: !0,
+      writable: !0,
+      value: function () {
+        return $jscomp.arrayIterator(this);
+      }
+    });
+  $jscomp.initSymbolIterator = function () {};
+};
+$jscomp.arrayIterator = function (a) {
+  var b = 0;
+  return $jscomp.iteratorPrototype(function () {
+    return b < a.length ? { done: !1, value: a[b++] } : { done: !0 };
+  });
+};
+$jscomp.iteratorPrototype = function (a) {
+  $jscomp.initSymbolIterator();
+  a = { next: a };
+  a[$jscomp.global.Symbol.iterator] = function () {
+    return this;
+  };
+  return a;
+};
+$jscomp.polyfill = function (a, b, c, d) {
+  if (b) {
+    c = $jscomp.global;
+    a = a.split(".");
+    for (d = 0; d < a.length - 1; d++) {
+      var f = a[d];
+      f in c || (c[f] = {});
+      c = c[f];
+    }
+    a = a[a.length - 1];
+    d = c[a];
+    b = b(d);
+    b != d &&
+      null != b &&
+      $jscomp.defineProperty(c, a, {
+        configurable: !0,
+        writable: !0,
+        value: b
+      });
+  }
+};
+$jscomp.polyfill(
+  "Array.from",
+  function (a) {
+    return a
+      ? a
+      : function (a, c, d) {
+          $jscomp.initSymbolIterator();
+          c =
+            null != c
+              ? c
+              : function (a) {
+                  return a;
+                };
+          var b = [],
+            e = a[Symbol.iterator];
+          if ("function" == typeof e)
+            for (a = e.call(a); !(e = a.next()).done; )
+              b.push(c.call(d, e.value));
+          else
+            for (var e = a.length, g = 0; g < e; g++) b.push(c.call(d, a[g]));
+          return b;
+        };
+  },
+  "es6-impl",
+  "es3"
+);
+var MOUSE_EVENTS = ["click", "touchstart"],
+  Carousel = function (a) {
+    this.element = a;
+    this.init();
+  };
+Carousel.prototype.init = function () {
+  var a = this;
+  this.items = Array.from(this.element.querySelectorAll(".carousel-item"));
+  MOUSE_EVENTS.forEach(function (b) {
+    var c = a.element.querySelector(".carousel-nav-left"),
+      d = a.element.querySelector(".carousel-nav-right");
+    c &&
+      c.addEventListener(
+        b,
+        function (b) {
+          b.preventDefault();
+          a.move("previous");
+          a.autoplayInterval &&
+            (clearInterval(a.autoplayInterval),
+            a.autoPlay(a.element.dataset.delay || 5e3));
+        },
+        !1
+      );
+    d &&
+      d.addEventListener(
+        b,
+        function (b) {
+          b.preventDefault();
+          a.move("next");
+          a.autoplayInterval &&
+            (clearInterval(a.autoplayInterval),
+            a.autoPlay(a.element.dataset.delay || 5e3));
+        },
+        !1
+      );
+  });
+  this.initOrder();
+  this.element.dataset.autoplay &&
+    "true" == this.element.dataset.autoplay &&
+    this.autoPlay(this.element.dataset.delay || 5e3);
+};
+Carousel.prototype.initOrder = function () {
+  var a = this.element.querySelector(".carousel-item.is-active");
+  (a = this.items.indexOf(a))
+    ? this.items.push(this.items.splice(0, a))
+    : this.items.unshift(this.items.pop());
+  this.setOrder();
+};
+Carousel.prototype.setOrder = function () {
+  this.items.forEach(function (a, b) {
+    a.style["z-index"] = 1 !== b ? "0" : "1";
+    a.style.order = b;
+  });
+};
+Carousel.prototype.move = function (a) {
+  a = void 0 === a ? "next" : a;
+  var b = this;
+  this.items.length &&
+    (this.element
+      .querySelector(".carousel-item.is-active")
+      .classList.remove("is-active"),
+    "previous" === a
+      ? (this.items.unshift(this.items.pop()),
+        this.element.classList.add("is-reversing"))
+      : (this.items.push(this.items.shift()),
+        this.element.classList.remove("is-reversing")),
+    (1 <= this.items.length ? this.items[1] : this.items[0]).classList.add(
+      "is-active"
+    ),
+    this.setOrder(),
+    this.element.classList.toggle("carousel-animated"),
+    setTimeout(function () {
+      b.element.classList.toggle("carousel-animated");
+    }, 50));
+};
+Carousel.prototype.autoPlay = function (a) {
+  var b = this;
+  this.autoplayInterval = setInterval(
+    function () {
+      b.move("next");
+    },
+    void 0 === a ? 5e3 : a
+  );
+};
+document.addEventListener("DOMContentLoaded", function () {
+  var a = document.querySelectorAll(".carousel, .hero-carousel");
+  [].forEach.call(a, function (a) {
+    new Carousel(a);
+  });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
 
 <style>
   .flip-card {
@@ -324,4 +581,256 @@ h1 { font-size: 30px }
   color: white;
   transform: rotateY(180deg);
 }
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+.carousel .carousel-container {
+  width: 100%;
+  position: relative;
+  border: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  left: -100%;
+  transform: translateX(100%);
+}
+.carousel .carousel-container .carousel-item {
+  display: block;
+  position: relative;
+  flex: 1 0 100%;
+}
+.carousel .carousel-container .carousel-item.has-background .is-background {
+  object-fit: cover;
+  object-position: center center;
+  height: 100%;
+  width: 100%;
+}
+.carousel .carousel-container .carousel-item .title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5em;
+  margin: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+.carousel .carousel-navigation {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.carousel .carousel-navigation .carousel-nav-left,
+.carousel .carousel-navigation .carousel-nav-right {
+  padding: 1em;
+}
+.carousel .carousel-navigation.is-centered {
+  justify-content: center;
+}
+.carousel .carousel-navigation.is-overlay {
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+.carousel .carousel-navigation.is-overlay .carousel-nav-left,
+.carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  height: 2.2em;
+  width: 2em;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4a4a4a;
+  z-index: 99;
+}
+.carousel .carousel-navigation.is-overlay .carousel-nav-left:hover,
+.carousel .carousel-navigation.is-overlay .carousel-nav-right:hover {
+  cursor: pointer;
+}
+.carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  left: auto;
+  right: 0;
+}
+.carousel.is-reversing .carousel-container {
+  transform: translateX(-100%);
+}
+.carousel.is-reversing.is-2 .carousel-container {
+  transform: translateX(calc(-100% / 2));
+}
+.carousel.is-reversing.is-3 .carousel-container {
+  transform: translateX(calc(-100% / 3));
+}
+.carousel.is-reversing.is-4 .carousel-container {
+  transform: translateX(calc(-100% / 4));
+}
+.carousel.is-reversing.is-5 .carousel-container {
+  transform: translateX(calc(-100% / 5));
+}
+.carousel.is-2 .carousel-container {
+  left: calc(-100% / 2);
+  transform: translateX(calc(100% / 2));
+}
+.carousel.is-2 .carousel-container .carousel-item {
+  padding: 1em;
+  flex-basis: calc(100% / 2);
+}
+.carousel.is-3 .carousel-container {
+  left: calc(-100% / 3);
+  transform: translateX(calc(100% / 3));
+}
+.carousel.is-3 .carousel-container .carousel-item {
+  padding: 1em;
+  flex-basis: calc(100% / 3);
+}
+.carousel.is-4 .carousel-container {
+  left: calc(-100% / 4);
+  transform: translateX(calc(100% / 4));
+}
+.carousel.is-4 .carousel-container .carousel-item {
+  padding: 1em;
+  flex-basis: calc(100% / 4);
+}
+.carousel.is-5 .carousel-container {
+  left: calc(-100% / 5);
+  transform: translateX(calc(100% / 5));
+}
+.carousel.is-5 .carousel-container .carousel-item {
+  padding: 1em;
+  flex-basis: calc(100% / 5);
+}
+
+.hero.has-carousel {
+  position: relative;
+}
+.hero.has-carousel + .hero-body,
+.hero.has-carousel + .hero-head,
+.hero.has-carousel + .hero-footer {
+  z-index: 1;
+}
+.hero.has-carousel .hero-carousel {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: auto;
+  border: none;
+  margin: auto;
+  padding: 0;
+  z-index: 0;
+}
+
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+}
+.hero-carousel .carousel-container {
+  width: 100%;
+  position: relative;
+  border: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  left: -100%;
+  transform: translateX(100%);
+}
+.hero-carousel .carousel-container .carousel-item {
+  display: block;
+  position: relative;
+  flex: 1 0 100%;
+}
+.hero-carousel .carousel-container .carousel-item.has-background .is-background {
+  object-fit: cover;
+  object-position: center center;
+  height: 100%;
+  width: 100%;
+}
+.hero-carousel .carousel-container .carousel-item .title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5em;
+  margin: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+.hero-carousel .carousel-navigation {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.hero-carousel .carousel-navigation .carousel-nav-left,
+.hero-carousel .carousel-navigation .carousel-nav-right {
+  padding: 1em;
+}
+.hero-carousel .carousel-navigation.is-centered {
+  justify-content: center;
+}
+.hero-carousel .carousel-navigation.is-overlay {
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-left,
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  height: 2.2em;
+  width: 2em;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4a4a4a;
+  z-index: 99;
+}
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-left:hover,
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right:hover {
+  cursor: pointer;
+}
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  left: auto;
+  right: 0;
+}
+.hero-carousel.is-reversing .carousel-container {
+  transform: translateX(-100%);
+}
+.hero-carousel.is-reversing.is-2 .carousel-container {
+  transform: translateX(calc(-100% / 2));
+}
+.hero-carousel.is-reversing.is-3 .carousel-container {
+  transform: translateX(calc(-100% / 3));
+}
+.hero-carousel.is-reversing.is-4 .carousel-container {
+  transform: translateX(calc(-100% / 4));
+}
+.hero-carousel.is-reversing.is-5 .carousel-container {
+  transform: translateX(calc(-100% / 5));
+}
+
+.carousel.carousel-animate-slide.carousel-animated .carousel-container,
+.hero-carousel.carousel-animate-slide.carousel-animated .carousel-container {
+  transform: none;
+  transition: transform 0.5s ease-in-out;
+}
+.carousel.carousel-animate-fade .carousel-item,
+.hero-carousel.carousel-animate-fade .carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+.carousel.carousel-animate-fade .carousel-item.is-active,
+.hero-carousel.carousel-animate-fade .carousel-item.is-active {
+  opacity: 1;
+}
+.carousel.carousel-animate-fade .carousel-item:not(.is-active),
+.hero-carousel.carousel-animate-fade .carousel-item:not(.is-active) {
+  opacity: 0;
+}
+
 </style>
