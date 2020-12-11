@@ -143,7 +143,6 @@ module.exports = () => {
 
   router.get(
     "/perfil",
-    authController.verificarInicioSesion,
     usuarioController.verPerfilUsuario
   );
   
@@ -190,6 +189,7 @@ module.exports = () => {
   
     
   });
+
   
 
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
