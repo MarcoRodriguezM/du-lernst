@@ -9,6 +9,12 @@ exports.mostrarCategorias = async (req, res, next) => {
     res.render("categoriasVer", { categorias });
   };
 
+exports.enlistarCategorias = async (req, res, next) => {
+    const categorias = await Categoria.find().lean();
+    
+    return categorias;
+  };
+
   // Mostrar el formulario de creación de categorias
 exports.formularioCrearCategoria = (req, res, next) => {
     res.render("crearCategoria");

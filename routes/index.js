@@ -14,7 +14,11 @@ module.exports = () => {
   // Rutas disponibles
   router.get("/", (req, res, next) => {
     
-     res.render("home", { login: req.isAuthenticated, usuario: authController.usuarioInfo(req) });
+     res.render("home", 
+     { login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, 
+      categorias: categoriaController.enlistarCategorias 
+    });
   });
 
   // Rutas para categorias
@@ -47,10 +51,6 @@ module.exports = () => {
     ],
     categoriaController.crearCategoria
   );
-
-  /*router.get("/cursos", (req, res, next) => {
-    res.render("cursos");
-  });*/
 
   router.get("/explorarCursos", cursosController.explorarCursos);
 
