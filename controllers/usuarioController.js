@@ -68,15 +68,88 @@ exports.crearCuenta = async (req, res, next) => {
       }
     }
   };
+  exports.formularioIniciarSesion = (req, res, next) => {
+    console.log(req.flash());
+    res.render("iniciarSesion", {
+      // layout: "auth",
+      typePage: "login-page",
+      signButtonValue: "/crear-cuenta",
+      signButtonText: "Regístrate",
+      year,
+    });
+  };
 
-  // Cargar el formulario de inicio de sesión
-exports.formularioIniciarSesion = (req, res, next) => {
-  console.log(req.flash());
-  res.render("iniciarSesion", {
-    // layout: "auth",
-    typePage: "login-page",
-    signButtonValue: "/crear-cuenta",
-    signButtonText: "Regístrate",
-    year,
-  });
-};
+  exports.verPerfilUsuario = async (req, res, next) => {
+    const usuario = res.locals.usuario;
+    const verifyAuth = true;
+    res.render("perfil", { usuario, verifyAuth });
+  };
+  exports.actualizarPerfil = async (req, res, next) => {
+    const mensajes = [];
+    const usuarioSesion = res.locals.usuario;
+    const verifyAuth = true;
+    const { nombre, apellido, email, usuario } = req.body;
+    if (!nombre) {
+      mensajes.push({
+        mensaje: "El nombre no puede ir vacio.",
+        type: "alert-danger",
+      });
+    }
+    if (!apellido) {
+      mensajes.push({
+        mensaje: "El apellido no puede ir vacio.",
+        type: "alert-danger",
+      });
+    }
+    if (!email) {
+      mensajes.push({
+        mensaje: "El email no puede ir vacio.",
+        type: "alert-danger",
+      });
+    }
+    if (!usuario) {
+      mensajes.push({
+        mensaje: "El usuario no puede ir vacio.",
+        type: "alert-danger",
+      });
+    }
+    // Verificar si hay errores
+    if (mensajes.length) {
+      res.render("perfil", {
+        mensajes,
+        usuarioSesion,
+        usuario: usuarioSesion,
+        verifyAuth,
+      });
+    } else {
+      try {
+        await Usuario.update(
+          { nombre, email, usuario },
+          { where: { id: usuarioSesion.id } }
+        );
+        mensajes.push({
+          mensaje:
+            "La informacion se ha actualizado exitosamente, es necesario que cierres tu sesion y vuelvas a iniciar",
+          type: "alert-success",
+        });
+        res.render("perfil", {
+          mensajes,
+          usuarioSesion,
+          usuario: usuarioSesion,
+          verifyAuth,
+        });
+      } catch (error) {
+        mensajes.push({
+          mensaje: "Ha ocurrido un erro al momento de actualizar la informacion.",
+          type: "alert-danger",
+        });
+        res.render("perfil", {
+          mensajes,
+          usuarioSesion,
+          usuario: usuarioSesion,
+          verifyAuth,
+        });
+      }
+    }
+  };
+  

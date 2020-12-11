@@ -55,27 +55,11 @@
           <strong>Categorias</strong>
         </a>
         <div class="navbar-dropdown is-boxed">
+          {{#each categorias as |categoria|}}
           <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-            Ejemplo 1
+            {{categoria.nombre}}
           </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-            Ejemplo 2
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-            Ejemplo 3
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-            Ejemplo 4
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-            Ejemplo 5
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-            Ejemplo 6
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
-            Ejemplo 7
-          </a>
+          {{/each}}
         </div>
       </div> 
 
@@ -85,13 +69,13 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-
-           {{# if login }} 
-            {{#each usuario as |user|}}
-
+          
           <p class="control">
             
-            <div class="navbar-item has-dropdown is-hoverable">
+
+           {{# if login }} 
+            {{#each usuario as |user|}}    
+          <div class="navbar-item has-dropdown is-hoverable">
               <a href="cursos">        
                 <br>
                 <button class="button is-info">{{user.nombre}}</button>
@@ -116,12 +100,14 @@
                 
               </div>
             </div> 
-             </div>
-            
+             </div> 
+
+      
+
+             
+            {{/each}}
           </p>
-          {{/each}}
             {{ else }}
-            <p class="control">
             <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" href="/iniciar-sesion">
               <span class="icon">
                 <i class="fas fa-sign-in-alt"></i>
@@ -130,7 +116,7 @@
                 Iniciar sesion
               </span>
             </a>
-           </p>
+           
             <p class="control">
             <a href="crear-cuenta">              
               
