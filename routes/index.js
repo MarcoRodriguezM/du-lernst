@@ -137,6 +137,10 @@ module.exports = () => {
     res.render("Videos");
   });
 
+  router.get("/videosss", (req, res, next) => {
+    res.render("videosss");
+  });
+
   router.get("/subircursos", (req, res, next) => {
     res.render("subirCursos");
   });
