@@ -133,8 +133,8 @@ module.exports = () => {
     res.render("ManualUsuario");
   });
 
-  router.get("/videos", (req, res, next) => {
-    res.render("Videos");
+  router.get("/videosPrueba", (req, res, next) => {
+    res.render("VideosPrueba");
   });
 
   router.get("/subircursos", (req, res, next) => {
