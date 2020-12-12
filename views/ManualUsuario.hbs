@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
 
   <head>
     <meta charset="utf-8">
@@ -10,11 +11,15 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/ghost-blog.css">
   </head>
+  
     <font color="black" SIZE=190 face="Bodoni MT Black">
   <h1 align="center"><i>"MANUAL DE USUARIO"</i></h1>
   </font>
+  <center>
+   <img src="https://s8.gifyu.com/images/manualusuario8c152f656c792d88.gif" style="width:230px;height:230px;"></center>
   </script>
   <section class="hero is-medium">
+    
     <div class="hero-head">
       <div class="container">
         <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -39,16 +44,16 @@
             <div class="column post is-6">
               <article class="columns is-multiline">
                 <div class="column is-12 post-img">
-                  <img src="https://i.postimg.cc/t4Mgbwmk/inicio.png" style="width:680px;height:340px;">
+                  <img src="https://i.postimg.cc/grFf4kxr/iniciarsesion.png" style="width:680px;height:340px;">
                 </div>
                 <div class="column is-12 featured-content ">
                    <div class="buttons">
                <a href="http://localhost:5000" class="button is-primary"> Inicio</a>              
                   </div>
-                
+                              
                   <FONT FACE="Arial Rounded MT Bold" SIZE=4 COLOR="black">
                   <p align="left"class="post-excerpt">Página principal donde te muestra que te ofrece nuestra página, también se encuentran las opciones, explorar cursos, categorías, 
-                    en la opción de “Promueve” te llevara a la ventana donde te puedes asociarse a nuestra página.</p></FONT>
+                    en la opción de “Promueve” te llevará a la ventana donde te puedes asociarte a nuestra página.</p></FONT>
                   <br>
                 </div>
               </article>
@@ -159,6 +164,7 @@
              <div class="column post is-6">
               <article class="columns is-multiline">
                 <div class="column is-12 post-img">
+                  
                   <img src="https://i.postimg.cc/grFf4kxr/iniciarsesion.png" style="width:680px;height:340px;">
                 </div>
                  <div class="column is-12 featured-content ">
@@ -176,7 +182,107 @@
 
       <body>
          <style>
-      
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+}
+
+.l-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+
+  @media screen and (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.b-game-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-bottom: 150%;
+  perspective: 1000px;
+
+  &__cover {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    background-size: cover;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    will-change: transform;
+    transform: skewX(0.001deg);
+    transition: transform 0.35s ease-in-out;
+
+    // Gloss
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background: linear-gradient(
+        226deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.4) 35%,
+        rgba(255, 255, 255, 0.2) 42%,
+        rgba(255, 255, 255, 0) 60%
+      );
+      transform: translateY(-20%);
+      will-change: transform;
+      transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
+    }
+  }
+
+  &:hover &__cover {
+    transform: rotateX(7deg) translateY(-6px);
+
+    &::after {
+      transform: translateY(0%);
+    }
+  }
+
+  // Shadows
+
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background: rgba($c_0, 0.5);
+    box-shadow: 0 6px 12px 12px rgba($c_0, 0.4);
+    will-change: opacity;
+    transform-origin: top center;
+    transform: skewX(0.001deg);
+    transition: transform 0.35s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  &:hover::before {
+    opacity: 0.6;
+    transform: rotateX(7deg) translateY(-6px) scale(1.05);
+  }
+}
+
 
       </style>
       </body>
