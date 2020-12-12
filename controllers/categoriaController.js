@@ -2,11 +2,14 @@
 const mongoose = require("mongoose");
 const Categoria = mongoose.model("Categoria");
 const { validationResult } = require("express-validator");
+const authController = require("../controllers/authController");
 
 exports.mostrarCategorias = async (req, res, next) => {
     const categorias = await Categoria.find().lean();
   
-    res.render("categoriasVer", { categorias });
+    res.render("categoriasVer", { categorias, 
+      login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
   };
 
 exports.enlistarCategorias = async (req, res, next) => {
@@ -17,7 +20,8 @@ exports.enlistarCategorias = async (req, res, next) => {
 
   // Mostrar el formulario de creación de categorias
 exports.formularioCrearCategoria = (req, res, next) => {
-    res.render("crearCategoria");
+    res.render("crearCategoria", {login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null});
   };
   
   // Crear una categoria
