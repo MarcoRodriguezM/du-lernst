@@ -7,14 +7,14 @@ const shortid = require("shortid");
 
 const year = new Date().getFullYear();
 
-// Mostrar el formulario de creación de producto
+// Mostrar el formulario de creación del video
 exports.formularioCrearVideo = (req, res, next) => {
   res.render("VideosPrueba", {
     year,
   });
 };
 
-// Crear un producto
+// Crear un video
 exports.crearVideo = async (req, res, next) => {
   // Verificar que no existen errores de validación
   const errores = validationResult(req);
@@ -61,7 +61,7 @@ exports.crearVideo = async (req, res, next) => {
   }
 };
 
-// Permite subir un archivo (imagen) al servidor
+// Permite subir un archivo (video) al servidor
 exports.subirVideo = (req, res, next) => {
   // Verificar que no existen errores de validación
   // const errores = validationResult(req);

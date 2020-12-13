@@ -6,6 +6,36 @@ const Usuario = mongoose.model("Usuarios");
 const enviarCorreo = require("../handlers/email");
 const { send } = require("process");
 const { request } = require("http");
+const { reset } = require("nodemon");
+const util = require("util");
+const emailConfig = require("../config/mailtrap");
+const nodemailer = require("nodemailer");
+const hbs = require("nodemailer-express-handlebars");
+
+// Configurar la capa de transporte del correo
+const transport = nodemailer.createTransport({
+  service:'gmail',
+  secure: false,
+  auth: {
+    user: process.env.GMAIL,
+    pass: process.env.GMAILPASS,
+  },
+});
+// Template para el envío del correo
+transport.use(
+  "compile",
+  hbs({
+    viewEngine: {
+      extName: ".hbs",
+      partialsDir: `${__dirname}/../views/emails`,
+      layouts: `${__dirname}/../views/emails`,
+      defaultLayout: "",
+    },
+    viewPath: `${__dirname}/../views/emails`,
+    extName: ".hbs",
+  })
+);
+
 
 // Se encarga de autenticar el usuario y de redireccionarlo
 exports.autenticarUsuario = passport.authenticate("local", {
@@ -114,30 +144,31 @@ exports.enviarToken = async (req, res, next) => {
 
 
 
-exports.FormularioInformacion = async(nombre,email,interes,Opinion,comentarios) => {
-
- 
+exports.enviarCorreo = async  (req, res, next) => {
+   const {nombre,email,interes,Opinion,comentarios}= req.body;
   try {
     // Guardar en un correo
-    const sendMail = await enviarCorreo.enviarCorreo({
-      to: usuario.email,
+    const correo ={
+      from:"lernst2021@gmail",
+      to:email,
       subject: "Nueva Solicitud de Asociacion",
       template: "FormularioInformacion",
+      context :{
       nombre:nombre,
-      email,
-      interes,
-      Opinion,
-      comentarios
-    });
+      email:email,
+      interes:interes,
+      Opinion:Opinion,
+      comentarios:comentarios,
+    },
+    };
+    const sendMail= util.promisify(transport.sendMail,transport);
+     return sendMail.call(transport,correo);
+     res.send("Tu mensaje fue enviado")
   } catch (error) {
     console.log(error);
   }
-
-
-
-
-
 }
+
 
 // Mostrar el formulario de cambio de contraseña
 exports.formularioNuevoPassword = async (req, res, next) => {

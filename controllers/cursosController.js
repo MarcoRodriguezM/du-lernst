@@ -6,6 +6,7 @@ const { validationResult } = require("express-validator");
 const multer = require("multer");
 const shortid = require("shortid");
 const slug = require("slug");
+const authController = require("../controllers/authController");
 
 //const year = new Date().getFullYear();
 
@@ -13,12 +14,15 @@ exports.explorarCursos = async (req, res, next) => {
   // Obtener todos los productos disponibles
   const cursos = await Curso.find().lean();
 
-  res.render("explorarCursos", { cursos });
+  res.render("explorarCursos", { cursos,
+    login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
 };
 
 // Mostrar el formulario de creación de producto
 exports.formularioCrearCurso = (req, res, next) => {
-  res.render("crearCurso");
+  res.render("crearCurso", {login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null});
 };
 
 // Crear un curso
