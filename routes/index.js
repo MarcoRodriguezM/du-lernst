@@ -5,7 +5,7 @@ const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
 const cursosController = require("../controllers/cursosController");
 const categoriaController = require("../controllers/categoriaController");
-const { check } = require("express-validator");
+const { check }= require("express-validator");
 
 // Configura y mantiene todos los endpoints en el servidor
 const router = express.Router();
@@ -150,13 +150,13 @@ module.exports = () => {
     usuarioController.verPerfilUsuario
   );
   
-  /*router.post(
-    "/perfil",
+  router.post(
+    "/actualizar-perfil",
     authController.verificarInicioSesion,
     // Sanitizando
     check("nombre").not().isEmpty(),
     usuarioController.actualizarPerfil
-  );*/
+  );
   // Ver contenido de la leccion
 
 
@@ -185,16 +185,8 @@ module.exports = () => {
     usuarioController.crearCuenta
   );
 
-  router.post("FormularioInformacion", (req, res, next) => {
 
-    const { nombre,email,interes,Opinion,comentarios } = req.body;
-  
-     FormularioInformacion(nombre,email,interes,Opinion,comentarios);
-  
-    
-  });
-
-  
+  router.post("/FormularioInformacion", authController.enviarCorreo);
 
   router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 

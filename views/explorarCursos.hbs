@@ -1,38 +1,140 @@
-<div class="wrapper">
-  <div class="main">
-    <div class="section section-white section-search">
-      <div class="container">
-        {{!-- Mensajes para el usuario --}}
-        {{> showMessages messages}}
-        <div class="row">
-          <div class="col-md-8 col-12 ml-auto mr-auto text-center">
-            <form role="search" class="form-inline search-form">
-              <div class="input-group no-border">
-                <span class="input-group-addon addon-xtreme no-border" id="basic-addon1"><i
-                    class="fa fa-search"></i></span>
-                <input type="text" class="form-control input-xtreme no-border" placeholder="Buscar..."
-                  aria-describedby="basic-addon1">
-              </div>
-            </form>
-            <h6 class="text-muted">¿Es esto lo que búscas?</h6>
-            <div class="row add-row">
-              {{#each cursos as |curso|}}
-              <div class="col-md-4 col-sm-4">
-                <h5>{{curso.nombre}}</h5>
-                <p>{{curso.descripcion}}</p>
-                {{!-- <div class="col-md-3 ml-auto col-sm-4"> --}}
-                <img src="uploads/cursos/{{imagen}}" class="img-responsive" />
-                {{!-- </div> --}}
-                <a href="/curso/{{curso.url}}" class="btn btn-secondary btn-round">Ver más</a>
-              </div>
-              {{/each}}
-            </div>
-            <div class="text-missing">
-              <h5 class="text-muted">Si no encuentras lo que buscas, puedes cambiar el término de búsqueda. </h5>
-            </div>
-          </div>
-        </div>
+
+
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+</head>
+
+<body>
+  
+  <div class="container">
+    {{#each cursos as |curso|}}
+    <div class="card">
+      <h3 class="title">{{curso.nombre}}</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
       </div>
+      <center>
+      <div class="circle">
+        <img src="uploads/cursos/{{imagen}}" class="img-responsive" />
+      </div>
+      <center>
+      
     </div>
+    {{/each}}
   </div>
-</div>
+  
+</body>
+
+<style>
+body {
+  background-color: #100e17;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  position: static;
+  height: 500px;
+  width: 600px;
+  top: 150px;
+  left: calc(50% - 300px);
+  display: flex;
+}
+
+.card {
+  display: flex;
+  height: 280px;
+  width: 200px;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  /*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.card:not(:first-child) {
+  margin-left: -50px;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.card:hover ~ .card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: #2e3033;
+  width: 100%;
+  height: 100%;
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: rgb(0, 154, 217);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 154, 217, 1) 0%,
+    rgba(217, 147, 0, 1) 65%,
+    rgba(255, 186, 0, 1) 100%
+  );
+  transition: 0.6s ease-out;
+}
+
+.card:hover .filledbar {
+  width: 120px;
+  transition: 0.4s ease-out;
+}
+
+.circle {
+  position: absolute;
+  top: 150px;
+  left: calc(40% - 60px);
+  right: calc(40% - 60px);
+}
+
+.stroke {
+  stroke: white;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+}
+
+svg {
+  fill: #17141d;
+  stroke-width: 2px;
+}
+
+.card:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+}
+
+
+</style>
