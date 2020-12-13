@@ -33,7 +33,25 @@ const usuarioSchema = new mongoose.Schema({
   gravatar: String,
   activo: Boolean,
   fechaRegistro: Date,
+
+  imagen: String,
+  
+  url: {
+    type: String,
+    lowercase: true,
+
+  },
+  
+  tutor: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Usuarios",
+    required: true,
+  },
+
+
 });
+
+
 // https://mongoosejs.com/docs/middleware.html#order
 // Hooks hash del password (hash + salt)
 usuarioSchema.pre("save", function (next) {

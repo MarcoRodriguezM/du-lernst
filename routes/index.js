@@ -177,17 +177,16 @@ module.exports = () => {
 
   router.get(
     "/perfil",
-    authController.verificarInicioSesion,
     usuarioController.verPerfilUsuario
   );
   
-  /*router.post(
-    "/perfil",
+  router.post(
+    "/actualizar-perfil",
     authController.verificarInicioSesion,
     // Sanitizando
     check("nombre").not().isEmpty(),
     usuarioController.actualizarPerfil
-  );*/
+  );
   // Ver contenido de la leccion
 
 
