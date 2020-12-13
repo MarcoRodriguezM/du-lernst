@@ -1,8 +1,8 @@
 <!DOCTYPE html>
+
 <html>
 
 <body>
-
     <!-- END NAV -->
     <div class="container">
         <div class="columns">
@@ -16,159 +16,157 @@
 </span>           
      <ul class="menu-list">
       <li><a class="is-active">Perfil</a></li>
-                        <li><a>Usuarios</a></li>
-                        <li><a>Cursos</a></li>
-                        <li><a>Cupos</a></li>
-                        <li><a>Horarios</a></li>
+                       
      </ul>
      </aside>             
  </div>
  
-               <div class="column is-8">
-                <section class="hero is-info welcome is-small">
-                    <div class="hero-body">
-                        <div class="container">
-
-
-
-                            
-                           
-                           <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                      <div class="column is-3">
-            <div class="card-image">    
-                <img src="https://source.unsplash.com/6Ticnhs1AG0" >
-            </div>  
-             
-            
-                    </div>
-                </section>
-                <section class="info-tiles">
-              
-                          
-                </section>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="columns">
+       <div class="column is-8">
+             <div class="columns">
                     <div class="column is-6">
-                       
-                            <header class="card-header">
-                                <p class="card-header-title">
-                                    Datos Personales
+                        
+                                                                                                                                                                                
+                                                                                                                                                                     
+                        <header class="card-header">
+                          
+
+                                <p class="card-header-title ">
+                                 
+                                    DATOS PERSONALES
                                 </p>
-                                <a href="#" class="" aria-label="more options">
+                             
                   <span class="icon">
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>  
                   </span>
+                  
                 </a>
              </header>
-
+ <header class="card-header"></header>
                            
                                              
      <div class="content">
                                     <table class="table is-fullwidth is-striped">
-                                       
+       {{#each usuario as |user|}}                                 
    <div class="form-group">
-          <label for="nombre" class="font-weight-bold">
+     
+     <span class="icon has-text-info">
+  
+</span>
+
+ <img src="uploads/cursos/{{user.imagen}}"
+>
+
+
+ <form action="/actualizar-perfil" method="POST" enctype="multipart/form-data">
+
+
+<div class="field">
+<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+  <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"
+    style="max-width: 370px; max-height: 250px;">
+  </div>
+  <div>
+    <span class="btn btn-outline-default btn-round btn-file"><label class="label">Selecciona una Imagen</label><br>
+    <span class="fileinput-exists">Cambiar  </span><input type="file" name="imagen"></span>
+    <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput">
+      <i class="fa fa-times"></i>Quitar</a>
+  </div>
+</div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" type="submit">Guardar</button>
+  </div>
+  <div class="control">
+    <button class="button is-link is-light" type="reset">Descartar</button>
+  </div>
+</div>
+
+</form>
+ 
+
+
+
+
+
+         
+<br><br/>
+
+</div>
+</div>
+<div class="form-group">
+
+
+           <label for="mobile"><h4><img src="" 
+                            height="25" width="25" /> 
+                             <label for="nombre" class="font-weight-bold">
+
             Nombre:
           </label>
-          <input
+  <input
+
             type="text"
-            class="form-control"
+            class="input is-medium is-rounded"
             name="nombre"
             id="nombre"
-            value="{{usuario.nombre}}"
+            value="{{user.nombre}}"
           />
-        </div>
+          </div>
         <div class="form-group">
-          <label for="apellido" class="font-weight-bold">
-            Apellido:
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="apellido"
-            id="apellido"
-            value="{{usuario.apellido}}"
-          />
-        </div>
- <div class="form-group">
-          <label for="telefono" class="font-weight-bold">
-            Telefono:
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="Telefono"
-            id="Telefono"
-            value="{{usuario.telefono}}"
-          />
-        </div>
-
- <div class="form-group">
-          <label for="Direccion" class="font-weight-bold">
-            Direccion:
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            name="Direccio"
-            id="Direccion"
-            value="{{usuario.direccion}}"
-          />
-        </div>
-
-
-        <div class="form-group">
+             <label for="mobile"><h4><img src="https://cdn.icon-icons.com/icons2/1826/PNG/512/4202011emailgmaillogomailsocialsocialmedia-115677_115624.png" 
+                            height="25" width="25" /> 
           <label for="email" class="font-weight-bold">
-            Correo Electrónico:
+            Correo:
           </label>
           <input
             type="email"
-            class="form-control"
+            class="input is-medium is-rounded"
             name="email"
             id="email"
             placeholder="correo@ejemplo.com"
-            value="{{usuario.email}}"
+            value="{{user.email}}"
           />
         </div>
-        <div class="form-group">
-          <label for="usuario:" class="font-weight-bold">
-            Usuario:
-          </label>
-          <input
-            type="usuario"
-            class="form-control"
-            name="usuario"
-            id="usuario"
-            placeholder=""
-            value="{{usuario.usuario}}"
-          />
-          <br>
-        </div>
-       <div class="compose has-text-centered">
-                    <a class="button is-danger is-block is-bold">
 
-            <span class="Guardar">Guardar</span>
-          </a>
-                </div>
-      </form>
+         {{/each}}
+         
         
-                                       
-                                        </tbody>
-                                    </table>
+       <div class="">
+         
+       
+          </form>
+             <a class="button is-block is-info is-large is-fullwidth" style="background-color: #0c0c0c;"href="/olvide-password">
+               
+										<span class="icon">
+											<i class="fa fa-user"></i>
+										</span>
+										<span>Cambiar contraseña</span>
+									</a>
+              
+                   
+  </div>
+ 
+      </form>
+        </tbody>
+                 </table>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    
-                    
-                   
+                    <hr>
 
+        </div>
+
+                          </div>
+                      </div>
+    
+  
+                     
+                     
+                      
                         
     <script async type="text/javascript" src="../js/bulma.js"></script>
        
