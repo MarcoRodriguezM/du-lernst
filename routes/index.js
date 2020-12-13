@@ -121,6 +121,36 @@ module.exports = () => {
     cursosController.crearCurso
   );
 
+
+  // Rutas para videos
+  router.get(
+    "/crear-video",
+    authController.verificarInicioSesion,
+    VideoController.formularioCrearVideo
+  );
+
+  router.post(
+    "/crear-video",
+    authController.verificarInicioSesion,
+    // [
+    //   check("imagen", "Debes seleccionar una imagen para el producto")
+    //     .not()
+    //     .isEmpty(),
+    // ],
+    VideoController.subirVideo,
+    [
+      check("nombre", "Debes ingresar el nombre del video")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del video")
+        .not()
+        .isEmpty()
+        .escape(),
+    ],
+    VideoController.crearVideo
+  );
+
   router.get("/Asociarse", (req, res, next) => {
     res.render("formularioAsoci");
   });

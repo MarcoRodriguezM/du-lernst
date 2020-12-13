@@ -13,6 +13,12 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const { resolveSoa } = require("dns");
+const multer = require('multer');
+const mimeTypes = require('mime-types');
+
+
+
+
 
 // Habilitar el archivo de variables de entorno
 require("dotenv").config({ path: ".env" });
