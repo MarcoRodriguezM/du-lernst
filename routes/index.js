@@ -196,6 +196,8 @@ router.get("/videosPrueba", (req, res, next) => {
     res.render("VideosPrueba");
   });
 
+  router.get("/enlistarVideos", VideoController.enlistarVideos);
+
 
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);

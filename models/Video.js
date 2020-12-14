@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const shortid = require("shortid");
+const slug = require("slug");
 
 // Definición del schema
 const videoSchema = new mongoose.Schema({
