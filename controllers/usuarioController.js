@@ -85,64 +85,66 @@ exports.crearCuenta = async (req, res, next) => {
 
   exports.verPerfilUsuario = async (req, res, next) => {
     const usuario = authController.usuarioInfo(req);
-    const verifyAuth = true;
-    res.render("perfil", { usuario, verifyAuth,
-      login: req.isAuthenticated(), 
+    
+    res.render("perfil", { login: req.isAuthenticated(), 
       usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
   };
 
   exports.actualizarPerfil = async (req, res, next) => {
     const mensajes = [];
     const usuario = authController.usuarioInfo(req);
-    const verifyAuth = true;
-    const { nombre,  email, } = req.body;
+    const email = req.user.email;
+    const { nombre } = req.body;
    
       try {
-        await Usuario.update(
-          { nombre, email,  imagen: req.file.filename, },
-          { where: { id: usuario._id  } }
-
-        );
+        const user = await Usuario.findOne({email});
+        console.log(user.imagen);
+        user.nombre = nombre;
+        user.email = email;
+        user.imagen = req.file.filename;
+        await user.save();
         mensajes.push({
           mensaje:
             "La informacion se ha actualizado exitosamente, es necesario que cierres tu sesion y vuelvas a iniciar",
           type: "alert-success",
         });
-        res.render("perfil", {
-          mensajes,
-          usuario: usuario,
-          verifyAuth,
-        });
-        redirect("/perfil")
+        res.redirect("/perfil");
       } catch (error) {
         mensajes.push({
           mensaje: "Ha ocurrido un erro al momento de actualizar la informacion.",
           type: "alert-danger",
         });
-        res.render("perfil", {
-          mensajes,
-         
-          usuario: usuario,
-          verifyAuth,
-        });
+        res.redirect("/perfil");
       }
     
   };
+
+function updateNota(req, res){
+    // Recogemos un parámetro por la url
+var notaId = req.params.id;
+
+    // Recogemos los datos que nos llegen en el body de la petición
+var update = req.body;
+
+    // Buscamos por id y actualizamos el objeto y devolvemos el objeto actualizado
+Nota.findByIdAndUpdate(notaId, update, {new:true}, (err, notaUpdated) => {
+    if(err) return res.status(500).send({message: 'Error en el servidor'});
+     
+        if(notaUpdated){
+            return res.status(200).send({
+                nota: notaUpdated
+            });
+        }else{
+            return res.status(404).send({
+                message: 'No existe la nota'
+            });
+        }
+     
+});
+}
+
   exports.subirImagen = (req, res, next) => {
-    // Verificar que no existen errores de validación
-    // const errores = validationResult(req);
-    // const errores = [];
-    // const messages = [];
-  
-    // if (!errores.isEmpty) {
-    //   errores.array().map((error) => {
-    //     messages.push({ message: error.msg, alertType: "danger" });
-    //   });
-  
-    //   req.flash("messages", messages);
-    //   res.redirect("/crear-producto");
-    // } else {
-    // Subir el archivo mediante Multer
+    
     upload(req, res, function (error) {
       console.log(req.body);
       if (error) {
@@ -168,7 +170,7 @@ exports.crearCuenta = async (req, res, next) => {
           ]);
         }
         // Redireccionar y mostrar el error
-        res.redirect("/crear-curso");
+        res.redirect("/perfil");
         return;
       } else {
         // Archivo cargado correctamente

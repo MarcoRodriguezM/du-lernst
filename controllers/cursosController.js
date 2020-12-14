@@ -75,20 +75,7 @@ exports.crearCurso = async (req, res, next) => {
 
 // Permite subir un archivo (imagen) al servidor
 exports.subirImagen = (req, res, next) => {
-  // Verificar que no existen errores de validación
-  // const errores = validationResult(req);
-  // const errores = [];
-  // const messages = [];
-
-  // if (!errores.isEmpty) {
-  //   errores.array().map((error) => {
-  //     messages.push({ message: error.msg, alertType: "danger" });
-  //   });
-
-  //   req.flash("messages", messages);
-  //   res.redirect("/crear-producto");
-  // } else {
-  // Subir el archivo mediante Multer
+  
   upload(req, res, function (error) {
     console.log(req.body);
     if (error) {

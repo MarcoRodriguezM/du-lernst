@@ -1,6 +1,8 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const shortid = require("shortid");
+const slug = require("slug");
 
 // Definición del schema
 const usuarioSchema = new mongoose.Schema({
@@ -41,13 +43,6 @@ const usuarioSchema = new mongoose.Schema({
     lowercase: true,
 
   },
-  
-  tutor: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Usuarios",
-    required: true,
-  },
-
 
 });
 
@@ -56,6 +51,8 @@ const usuarioSchema = new mongoose.Schema({
 // Hooks hash del password (hash + salt)
 usuarioSchema.pre("save", function (next) {
   const user = this;
+  const url = slug(this.nombre);
+  this.url = `${url}-${shortid.generate()}`;
 
   // Si el password fué modificado
   if (!user.isModified("password")) {
