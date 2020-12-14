@@ -293,6 +293,7 @@ exports.usuarioInfo = (req) => {
     const nombre = req.user.nombre;
     const email = req.user.email;
     const rol = req.user.rol;
+    const imagen = req.user.imagen;
     if (rol == "Admin") {
       admin = true;
     }
@@ -304,7 +305,7 @@ exports.usuarioInfo = (req) => {
     }
 
   usuario.push({
-    _id, nombre, email, rol, login, admin, tutor, cursilista
+    _id, nombre, email, rol, login, admin, tutor, cursilista, imagen
   });
 
   return usuario;
