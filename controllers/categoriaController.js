@@ -13,8 +13,16 @@ exports.mostrarCategorias = async (req, res, next) => {
   };
 
 exports.enlistarCategorias = async (req, res, next) => {
-    const categorias = await Categoria.find().lean();
-    
+  const categorias = [];
+    const cat_id = await Categoria.find({}, {_id:1}).lean();
+    const catNombre = await Categoria.find({}, {_id:0, nombre:1}).lean();
+
+    cat_id.forEach(_id => {
+      categorias.push({
+        _id
+      });
+    });
+    console.log(categorias);
     return categorias;
   };
 
