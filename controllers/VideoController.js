@@ -14,6 +14,15 @@ exports.formularioCrearVideo = (req, res, next) => {
   });
 };
 
+exports.enlistarVideos = async (req, res, next) => {
+  let videos = [];
+
+    videos = await Video.find().lean();
+
+    console.log(videos);
+    res.render("videosss", { videos });
+  };
+
 // Crear un video
 exports.crearVideo = async (req, res, next) => {
   // Verificar que no existen errores de validación
@@ -33,7 +42,7 @@ exports.crearVideo = async (req, res, next) => {
   } else {
     // Almacenar los valores del video
     try {
-      const { nombre, descripcion} = req.body;
+      const { nombre, descripcion } = req.body;
 
       await Video.create({
         nombre,
@@ -116,7 +125,7 @@ exports.subirVideo = (req, res, next) => {
 const configuracionMulter = {
   // Tamaño máximo del archivo en bytes
   limits: {
-    fileSize: 300000,
+    fileSize: 100000000,
   },
   // Dónde se almacena el archivo
   storage: (fileStorage = multer.diskStorage({
