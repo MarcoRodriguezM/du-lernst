@@ -143,7 +143,7 @@ const configuracionMulter = {
   // Verificar el tipo de archivo mediante el mime type
   // https://developer.mozilla.org/es/docs/Web/HTTP/Basics_of_HTTP/MIME_types
   fileFilter(req, file, cb) {
-    if (file.mimetype === "video/mp4" || file.mimetype === "video/avi") {
+    if (file.mimetype === "video/mp4" || file.mimetype === "video/avi" || file.mimetype === "video/webm") {
       // Si el callback retorne true se acepta el tipo de archivo
       cb(null, true);
     } else {
