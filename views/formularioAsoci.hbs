@@ -16,7 +16,7 @@
 <body>
 
 
-	
+		 {{> showMessages messages}}
 	<!-- START NAV -->
 	<nav class="navbar">
 		<div class="container">
@@ -32,6 +32,7 @@
 	<!-- END NAV -->    
 	<section class="hero is-fullheight">
 		<div class="hero-body">
+		
 			<div class="container has-text-centered">
 				<div class="columns is-8 is-variable ">
 					<div class="column is-two-thirds has-text-left">
@@ -52,10 +53,11 @@
 					  </div>
 					
 					 {{!-- Mensajes para el usuario --}}
-           				 {{> showMessages messages}}
+           				
 					
 
 					<div class="column is-one-third has-text-left">
+						
 						
 						<form  method="POST" action="/FormularioInformacion">
 						<div class="field">
