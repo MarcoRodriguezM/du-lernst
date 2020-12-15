@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const Video = mongoose.model("Video");
+const Categoria = mongoose.model("Categoria");
 const { validationResult } = require("express-validator");
 const multer = require("multer");
 const shortid = require("shortid");
@@ -8,19 +9,19 @@ const shortid = require("shortid");
 const year = new Date().getFullYear();
 
 // Mostrar el formulario de creación del video
-exports.formularioCrearVideo = (req, res, next) => {
+exports.formularioCrearVideo = async (req, res, next) => {
+  const categorias = await Categoria.find().lean();
   res.render("VideosPrueba", {
-    year,
+    year, categorias
   });
 };
 
 exports.enlistarVideos = async (req, res, next) => {
-  let videos = [];
-
-    videos = await Video.find().lean();
+    const categorias = await Categoria.find().lean();
+    const videos = await Video.find().lean();
 
     console.log(videos);
-    res.render("videosss", { videos });
+    res.render("videosss", { videos, categorias });
   };
 
 // Crear un video

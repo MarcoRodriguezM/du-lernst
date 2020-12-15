@@ -1,5 +1,7 @@
 // Importar los módulos requeridos
 const express = require("express");
+const mongoose = require("mongoose");
+const Categoria = mongoose.model("Categoria");
 const usuarioController = require("../controllers/usuarioController");
 const VideoController = require("../controllers/VideoController");
 const authController = require("../controllers/authController");
@@ -12,12 +14,13 @@ const router = express.Router();
 
 module.exports = () => {
   // Rutas disponibles
-  router.get("/", (req, res, next) => {
-    
+  router.get("/", async (req, res, next) => {
+    const categorias = await Categoria.find().lean();
+
      res.render("home", 
      { login: req.isAuthenticated(), 
       usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, 
-      categorias: categoriaController.enlistarCategorias 
+      categorias: categorias
     });
   });
 
@@ -121,28 +124,28 @@ module.exports = () => {
     cursosController.crearCurso
   );
 
-  router.get("/Asociarse", (req, res, next) => {
-    res.render("formularioAsoci");
+  router.get("/Asociarse", async (req, res, next) => {
+    const categorias = await Categoria.find().lean();
+    res.render("formularioAsoci", { login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, 
+      categorias: categorias
+    });
   });
 
-  router.get("/informacion", (req, res, next) => {
-    res.render("informacion");
+  router.get("/informacion", async (req, res, next) => {
+    const categorias = await Categoria.find().lean();
+    res.render("informacion", { login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, 
+      categorias: categorias
+    });
 
   });
-  router.get("/ManualUsuario", (req, res, next) => {
-    res.render("ManualUsuario");
-  });
-
-  router.get("/videos", (req, res, next) => {
-    res.render("Videos");
-  });
-
-  router.get("/videosss", (req, res, next) => {
-    res.render("videosss");
-  });
-
-  router.get("/subircursos", (req, res, next) => {
-    res.render("subirCursos");
+  router.get("/ManualUsuario", async (req, res, next) => {
+    const categorias = await Categoria.find().lean();
+    res.render("ManualUsuario", { login: req.isAuthenticated(), 
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, 
+      categorias: categorias
+    });
   });
 
   router.get(
@@ -192,10 +195,6 @@ router.post(
   VideoController.crearVideo
 );
 
-router.get("/videosPrueba", (req, res, next) => {
-    res.render("VideosPrueba");
-  });
-
   router.get("/enlistarVideos", VideoController.enlistarVideos);
 
 
@@ -241,15 +240,6 @@ router.get("/videosPrueba", (req, res, next) => {
   router.get("/administrar", (req, res, next) => {
     res.send("Administración del sitio");
   });
-
-  //Rutas para Cursos-Videos
-router.get(
-  "/crear producto" ,
-  authController.verificarInicioSesion,
-  (req, res, next) => {
-    res,render("subirCursos");
-  }
-);
 return router; 
 };
 
