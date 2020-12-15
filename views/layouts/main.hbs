@@ -50,10 +50,12 @@
          <strong>Explorar cursos</strong> 
         </a>
        &nbsp;
+       {{#if login }}        
        <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-item" href="/categorias">
           <strong>categorías</strong>
         </a>
+       
         <div class="navbar-dropdown is-boxed">
           {{#each categorias as |categoria|}}
           <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
@@ -61,7 +63,10 @@
           </a>
           {{/each}}
         </div>
+       
       </div> 
+      {{/if}}
+       
 
     </div>
 
@@ -77,7 +82,7 @@
            {{# if login }} 
             {{#each usuario as |user|}}    
           <div class="navbar-item has-dropdown is-hoverable">
-              <a href="cursos">        
+              <a href="/enlistarVideos">        
                 <br>
                 <button class="button is-info">{{user.nombre}}</button>
               </a>

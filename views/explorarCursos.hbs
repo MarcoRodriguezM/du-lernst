@@ -5,26 +5,40 @@
 </head>
 
 <body>
-  <button href = "/videosPrueba" class="button is-block is-info is-large " style="background-color: #33A1B7;"  ><i class="fas fa-video" ></i>  Videos</button>
-  <div class="container">
+  
+  
+  
+  <div class="grid-container">
+    
+
     {{#each cursos as |curso|}}
+      <div class="grid-item">
     <div class="card">
+
       <h3 class="title">{{curso.nombre}}</h3>
+
       <div class="bar">
         <div class="emptybar"></div>
         <div class="filledbar"></div>
       </div>
+
       <center>
       <div class="circle">
         <img src="uploads/cursos/{{imagen}}" class="img-responsive" />
       </div>
       <center>
-      
+
     </div>
+    </div>
+    
     {{/each}}
   </div>
   
 </body>
+
+
+
+
 
 <style>
 body {
@@ -34,11 +48,23 @@ body {
 
 .container {
   position: static;
-  height: 500px;
-  width: 600px;
-  top: 150px;
+  height: auto;
+  width: 800px;
+  top: 250px;
   left: calc(50% - 300px);
   display: flex;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns:  auto auto auto auto auto;
+ 
+}
+.grid-item {
+ 
+  padding: 5px;
+  font-size: 50px;
+  text-align: center;
 }
 
 .card {
@@ -48,10 +74,10 @@ body {
   background-color: #298fa3;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
-  /*   margin-left: -50px; */
+  margin-right: -10px; 
   transition: 0.4s ease-out;
   position: relative;
-  left: 0px;
+  left: -100px;
 }
 
 .card:not(:first-child) {

@@ -1,22 +1,18 @@
-<div class="container">
+<div class="container is-transparent">
+
+  {{#each videos as |video|}}
   <h3>
-    Matemáticas
+    {{video.nombre}}
   </h3>
+  
   <div class="card">
     <div class="card-body">
       <video class="w-100 d-block" controls>
-        <source src="uploads/vid/1607737211520videoplayback.mp4.mp4" type="video/mp4" />
+        <source src="uploads/vid/{{video.video}}" type="video/mp4" />
       </video>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-body">
-      <video class="w-100 d-block" controls>
-        <source src="uploads/vid/Matematica.mp4" type="video/mp4" />
-      </video>
-    </div>
-  </div>
-
+  
+{{/each}}
 
 </div>
