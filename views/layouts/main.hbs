@@ -58,7 +58,7 @@
        
         <div class="navbar-dropdown is-boxed">
           {{#each categorias as |categoria|}}
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+          <a class="navbar-item" href="/buscar/{{categoria._id}}">
             {{categoria.nombre}}
           </a>
           {{/each}}
@@ -73,15 +73,15 @@
         </a>
        
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+          <a class="navbar-item" href="/crear-categoria">
             Crear Categorias
           </a>
 
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+          <a class="navbar-item" href="/crear-curso">
             Crear Cursos
           </a>
 
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+          <a class="navbar-item" href="/crear-video">
             Crear Videos
           </a>
         </div>
