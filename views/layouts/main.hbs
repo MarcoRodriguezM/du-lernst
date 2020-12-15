@@ -65,8 +65,31 @@
         </div>
        
       </div> 
-      {{/if}}
+{{#each usuario as |user|}} 
+{{#if user.admin }}
+<div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-item" href="/">
+          <strong>Administrar</strong>
+        </a>
        
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+            Crear Categorias
+          </a>
+
+          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+            Crear Cursos
+          </a>
+
+          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+            Crear Videos
+          </a>
+        </div>
+       
+      </div> 
+{{/if}}
+{{/each}}
+      {{/if}}
 
     </div>
 
@@ -88,8 +111,18 @@
               </a>
               <div class="navbar-dropdown is-boxed">
 
-              <a href="/perfil" class="btn btn-secondary btn-round">Perfil</a>
-                </a>
+              {{!-- <a class="button is-primary" href="/perfil">
+                    
+                    <span>{{user.rol}}</span>
+                  </a> --}}
+
+                  <a class="button is-primary" href="/perfil">
+                    <span class="icon">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <span>Perfil</span>
+                  </a>
+              
                 <a class="button is-primary" href="/salir">
                     <span class="icon">
                       <i class="fas fa-sign-out-alt"></i>
@@ -97,12 +130,7 @@
                     <span>Cerrar sesión</span>
                   </a>
 
-                  <a class="button is-primary" href="/ver-rol">
-                    <span class="icon">
-                      <i class="fas fa-sign-out-alt"></i>
-                    </span>
-                    <span>Ver Rol</span>
-                  </a>
+                </a>
                 
               </div>
             </div> 

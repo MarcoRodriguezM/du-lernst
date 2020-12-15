@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const Usuario = mongoose.model("Usuarios");
+const Categoria = mongoose.model("Categoria");
 const { validationResult } = require("express-validator");
 const authController = require("../controllers/authController");
 const multer = require("multer");
@@ -85,9 +86,10 @@ exports.crearCuenta = async (req, res, next) => {
 
   exports.verPerfilUsuario = async (req, res, next) => {
     const usuario = authController.usuarioInfo(req);
+    const categorias = await Categoria.find().lean();
     
     res.render("perfil", { login: req.isAuthenticated(), 
-      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
+      usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null, categorias:categorias });
   };
 
   exports.actualizarPerfil = async (req, res, next) => {
