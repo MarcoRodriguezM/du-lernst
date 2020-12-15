@@ -15,14 +15,23 @@
 </div>
 
 <div class="field">
-  <label class="label">Categoria</label>
+  <label class="label">Categoria</label><br>
   <div class="control">
     <div class="select">
-      <select>
-        <option>Select dropdown</option>
-        <option>With options</option>
+      <select name="categoria">
+        {{#each categorias as |categoria|}} 
+        <option value="{{categoria._id}}">{{categoria.nombre}}</option>
+        {{/each}}
       </select>
     </div>
+    <a class="button is-light" href="/crear-categoria">
+										<span class="icon">
+											<i class="fas fa-plus"></i>
+										</span>
+									</a>
+  </div>
+  <div class="control">
+    
   </div>
 </div>
 

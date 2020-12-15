@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const Curso = mongoose.model("Curso");
+const Categoria = mongoose.model("Categoria");
 //const Carrito = mongoose.model("Carrito");
 const { validationResult } = require("express-validator");
 const multer = require("multer");
@@ -20,8 +21,10 @@ exports.explorarCursos = async (req, res, next) => {
 };
 
 // Mostrar el formulario de creación de producto
-exports.formularioCrearCurso = (req, res, next) => {
-  res.render("crearCurso", {login: req.isAuthenticated(), 
+exports.formularioCrearCurso = async (req, res, next) => {
+  const categorias = await Categoria.find().lean();
+
+  res.render("crearCurso", { categorias, login: req.isAuthenticated(), 
     usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null});
 };
 
@@ -44,14 +47,15 @@ exports.crearCurso = async (req, res, next) => {
   } else {
     // Almacenar los valores del curso
     try {
-      const { nombre, descripcion, precio } = req.body;
+      const { nombre, descripcion, precio, categoria } = req.body;
 
       await Curso.create({
         nombre,
         descripcion,
         precio,
         imagen: req.file.filename,
-        tutor: req.user._id,
+        owner: req.user._id,
+        categoria,
       });
 
       messages.push({
@@ -115,7 +119,7 @@ exports.subirImagen = (req, res, next) => {
 const configuracionMulter = {
   // Tamaño máximo del archivo en bytes
   limits: {
-    fileSize: 300000,
+    fileSize: 100000000,
   },
   // Dónde se almacena el archivo
   storage: (fileStorage = multer.diskStorage({
@@ -145,6 +149,15 @@ const configuracionMulter = {
       );
     }
   },
+};
+
+exports.misCursos = async (req, res, next) => {
+  // Obtener todos los productos disponibles
+  const cursos = await Curso.find().where({tutor: req.user._id}).lean();
+
+  res.render("misCursos", { cursos,
+    login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
 };
 
 // Muestra un producto que se obtiene a través de su URL

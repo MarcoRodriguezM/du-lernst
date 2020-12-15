@@ -22,7 +22,6 @@ exports.enlistarCategorias = async (req, res, next) => {
         _id
       });
     });
-    console.log(categorias);
     return categorias;
   };
 

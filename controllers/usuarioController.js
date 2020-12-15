@@ -98,10 +98,12 @@ exports.crearCuenta = async (req, res, next) => {
    
       try {
         const user = await Usuario.findOne({email});
-        console.log(user.imagen);
+        if (req.file.filename) {
+          user.imagen = req.file.filename;
+        }
         user.nombre = nombre;
         user.email = email;
-        user.imagen = req.file.filename;
+        
         await user.save();
         mensajes.push({
           mensaje:
@@ -119,30 +121,6 @@ exports.crearCuenta = async (req, res, next) => {
     
   };
 
-function updateNota(req, res){
-    // Recogemos un parámetro por la url
-var notaId = req.params.id;
-
-    // Recogemos los datos que nos llegen en el body de la petición
-var update = req.body;
-
-    // Buscamos por id y actualizamos el objeto y devolvemos el objeto actualizado
-Nota.findByIdAndUpdate(notaId, update, {new:true}, (err, notaUpdated) => {
-    if(err) return res.status(500).send({message: 'Error en el servidor'});
-     
-        if(notaUpdated){
-            return res.status(200).send({
-                nota: notaUpdated
-            });
-        }else{
-            return res.status(404).send({
-                message: 'No existe la nota'
-            });
-        }
-     
-});
-}
-
   exports.subirImagen = (req, res, next) => {
     
     upload(req, res, function (error) {
@@ -154,7 +132,7 @@ Nota.findByIdAndUpdate(notaId, update, {new:true}, (err, notaUpdated) => {
             req.flash("messages", [
               {
                 message:
-                  "El tamaño del archivo es superior al límite. Máximo 300Kb",
+                  "El tamaño del archivo es superior al límite. Máximo 100Mb",
                 alertType: "danger",
               },
             ]);
@@ -184,7 +162,7 @@ Nota.findByIdAndUpdate(notaId, update, {new:true}, (err, notaUpdated) => {
   const configuracionMulter = {
     // Tamaño máximo del archivo en bytes
     limits: {
-      fileSize: 300000,
+      fileSize: 100000000,
     },
     // Dónde se almacena el archivo
     storage: (fileStorage = multer.diskStorage({

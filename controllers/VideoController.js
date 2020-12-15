@@ -149,7 +149,7 @@ const configuracionMulter = {
     } else {
       cb(
         new Error(
-          "Formato de archivo no válido. Solamente se permiten mp4/avi"
+          "Formato de archivo no válido. Solamente se permiten mp4/avi/webm"
         ),
         false
       );
