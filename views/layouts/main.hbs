@@ -46,10 +46,19 @@
          <strong>Inicio</strong> 
         </a>
       &nbsp;
-      <a class="navbar-item" href="/explorarCursos">
-         <strong>Explorar cursos</strong> 
-        </a>
+   
        &nbsp;
+               
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-item" href="explorarCursos">
+            <strong>Explorar cursos</strong>
+          </a>
+
+       
+      </div> 
+      
+
+
        {{#if login }}        
        <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-item" href="/categorias">
@@ -81,7 +90,7 @@
 
            {{# if login }} 
             {{#each usuario as |user|}}    
-          <div class="navbar-item has-dropdown is-hoverable">
+          {{!-- <div class="navbar-item has-dropdown is-hoverable">
               <a href="/enlistarVideos">        
                 <br>
                 <button class="button is-info">{{user.nombre}}</button>
@@ -94,7 +103,7 @@
                     <span class="icon">
                       <i class="fas fa-sign-out-alt"></i>
                     </span>
-                    <span>Cerrar sesión</span>
+                    <span><i class="fas fa-sign-out-alt">Cerrar sesión</i></span>
                   </a>
 
                   <a class="button is-primary" href="/ver-rol">
@@ -106,9 +115,30 @@
                 
               </div>
             </div> 
-             </div> 
+             </div>  --}}
 
-      
+
+
+
+            {{!-- Boton y opciones de perfil --}}
+
+            <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-item" href="perfil">
+            <strong>{{user.nombre}}</strong>
+          </a>
+        
+          <div class="navbar-dropdown is-boxed">            
+            <a class="navbar-item" href="perfil">
+             Perfil
+            </a>  
+            <a class="navbar-item" href="salir">
+             Cerrar sesion
+            </a>          
+          </div>
+       
+      </div> 
+
+            {{!-- Final del boton y opcione de perfil --}}
 
              
             {{/each}}
