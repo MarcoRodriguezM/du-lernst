@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const shortid = require("shortid");
+const slug = require("slug");
 
 // Definición del schema
 const categoriaSchema = new mongoose.Schema({
@@ -13,6 +14,12 @@ const categoriaSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+  },
+  imagen: String,
+  url: {
+    type: String,
+    lowercase: true,
+
   },
 });
 // Hooks para generar la URL de la categoria
