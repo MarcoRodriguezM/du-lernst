@@ -28,8 +28,11 @@ exports.enlistarCategorias = async (req, res, next) => {
   };
 
   // Mostrar el formulario de creación de categorias
-exports.formularioCrearCategoria = (req, res, next) => {
-    res.render("crearCategoria", {login: req.isAuthenticated(), 
+exports.formularioCrearCategoria = async (req, res, next) => {
+  const categorias = await Categoria.find().lean();
+
+    res.render("crearCategoria", { categorias,
+      login: req.isAuthenticated(), 
       usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null});
   };
   
@@ -61,7 +64,7 @@ exports.formularioCrearCategoria = (req, res, next) => {
         });
   
         messages.push({
-          message: "Categoria agregada correctamente!",
+          message: "Categoría agregada correctamente!",
           alertType: "success",
         });
         req.flash("messages", messages);
@@ -82,7 +85,6 @@ exports.formularioCrearCategoria = (req, res, next) => {
   exports.subirImagen = (req, res, next) => {
   
     upload(req, res, function (error) {
-      console.log(req.body);
       if (error) {
         // Errores de Multer
         if (error instanceof multer.MulterError) {
