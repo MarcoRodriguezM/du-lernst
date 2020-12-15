@@ -57,6 +57,8 @@ module.exports = () => {
 
   router.get("/explorarCursos", cursosController.explorarCursos);
 
+  router.get("/buscar/:categoria_id",cursosController.buscar);
+
   // Rutas para cursos
   router.get(
     "/crear-curso",
@@ -95,35 +97,6 @@ module.exports = () => {
     res.render("videoscategoria");
   });
 
-  // Rutas para cursos
-  router.get(
-    "/crear-curso",
-    authController.verificarInicioSesion,
-    cursosController.formularioCrearCurso
-  );
-
-  router.post(
-    "/crear-curso",
-    authController.verificarInicioSesion,
-    // [
-    //   check("imagen", "Debes seleccionar una imagen para el producto")
-    //     .not()
-    //     .isEmpty(),
-    // ],
-    cursosController.subirImagen,
-    [
-      check("nombre", "Debes ingresar el nombre del curso")
-        .not()
-        .isEmpty()
-        .escape(),
-      check("descripcion", "Debes ingresar la descripción del curso")
-        .not()
-        .isEmpty()
-        .escape(),
-    ],
-    cursosController.crearCurso
-  );
-
   router.get("/Asociarse", async (req, res, next) => {
     const categorias = await Categoria.find().lean();
     res.render("formularioAsoci", { login: req.isAuthenticated(), 
@@ -148,10 +121,7 @@ module.exports = () => {
     });
   });
 
-  router.get(
-    "/perfil",
-    usuarioController.verPerfilUsuario
-  );
+  router.get("/perfil",usuarioController.verPerfilUsuario);
   
   router.post(
     "/perfil",
