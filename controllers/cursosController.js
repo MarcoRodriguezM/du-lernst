@@ -14,8 +14,20 @@ const authController = require("../controllers/authController");
 exports.explorarCursos = async (req, res, next) => {
   // Obtener todos los productos disponibles
   const cursos = await Curso.find().lean();
+  const categorias = await Categoria.find().lean();
 
-  res.render("explorarCursos", { cursos,
+  res.render("explorarCursos", { cursos, categorias,
+    login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
+};
+
+exports.buscar = async (req, res, next) => {
+  const { categoria_id } = req.params;
+  // Obtener todos los productos disponibles
+  const cursos = await Curso.find().where({categoria:categoria_id}).lean();
+  const categorias = await Categoria.find().lean();
+
+  res.render("buscar", { cursos, categorias,
     login: req.isAuthenticated(), 
     usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
 };

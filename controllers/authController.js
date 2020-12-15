@@ -164,9 +164,9 @@ exports.enviarToken = async (req, res, next) => {
     const sendMail= util.promisify(transport.sendMail,transport);
      sendMail.call(transport,correo);
      const messages = [];
-     messages.push({ message: "Solicitud enviada correctamente", alertType: "danger" })
+     messages.push({ message: "¡Solicitud enviada correctamente!", alertType: "danger" })
      req.flash("messages", messages);
-     res.render("formularioAsoci")
+     return res.redirect("/Asociarse");
 
      
   } catch (error) {
