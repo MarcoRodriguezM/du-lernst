@@ -5,13 +5,15 @@ const Categoria = mongoose.model("Categoria");
 const { validationResult } = require("express-validator");
 const multer = require("multer");
 const shortid = require("shortid");
+const authController = require("../controllers/authController");
 
 const year = new Date().getFullYear();
 
 // Mostrar el formulario de creación del video
 exports.formularioCrearVideo = async (req, res, next) => {
   const categorias = await Categoria.find().lean();
-  res.render("VideosPrueba", {
+  res.render("VideosPrueba", { login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null,
     year, categorias
   });
 };
