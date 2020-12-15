@@ -51,11 +51,13 @@
 						</div>
 					  </div>
 					
-
+					 {{!-- Mensajes para el usuario --}}
+           				 {{> showMessages messages}}
 					
 
 					<div class="column is-one-third has-text-left">
-						<form  method="POST" action="/FormularioInformacion"></form>
+						
+						<form  method="POST" action="/FormularioInformacion">
 						<div class="field">
 							<label class="label">Nombre:</label>
 							<div class="control">
@@ -91,7 +93,7 @@
 
 						<div class="control">
 						 {{!-- <a href="http://localhost:5000/" class="button is-primary">Enviar</a>  --}}
-						<button style="background-color: #33A1B7;" class="button is-info ">Enviar</button>
+						<button type="submit" style="background-color: #33A1B7;" class="button is-info "> Enviar</button>
                      
 
 						</div>

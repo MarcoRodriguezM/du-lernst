@@ -147,22 +147,56 @@ module.exports = () => {
 
   router.get(
     "/perfil",
-    authController.verificarInicioSesion,
     usuarioController.verPerfilUsuario
   );
   
-  /*router.post(
+  router.post(
     "/perfil",
     authController.verificarInicioSesion,
-    // Sanitizando
     check("nombre").not().isEmpty(),
+    check("email").not().isEmpty(),
+
+    usuarioController.subirImagen,
+
+    
     usuarioController.actualizarPerfil
-  );*/
+  );
   // Ver contenido de la leccion
 
+// Rutas para videos
+router.get(
+  "/crear-video",
+  authController.verificarInicioSesion,
+  VideoController.formularioCrearVideo
+);
 
+router.post(
+  "/crear-video",
+  authController.verificarInicioSesion,
+  // [
+  //   check("imagen", "Debes seleccionar una imagen para el producto")
+  //     .not()
+  //     .isEmpty(),
+  // ],
+  VideoController.subirVideo,
+  [
+    check("nombre", "Debes ingresar el nombre del video")
+      .not()
+      .isEmpty()
+      .escape(),
+    check("descripcion", "Debes ingresar la descripción del video")
+      .not()
+      .isEmpty()
+      .escape(),
+  ],
+  VideoController.crearVideo
+);
 
+router.get("/videosPrueba", (req, res, next) => {
+    res.render("VideosPrueba");
+  });
 
+  router.get("/enlistarVideos", VideoController.enlistarVideos);
 
 
   // Rutas para usuario
@@ -216,10 +250,6 @@ router.get(
     res,render("subirCursos");
   }
 );
-return router;
-
-
-
-  
+return router; 
 };
 

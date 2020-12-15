@@ -144,14 +144,14 @@ exports.enviarToken = async (req, res, next) => {
 
 
 
-exports.enviarCorreo = async  (req, res, next) => {
+ exports.enviarCorreo = async  (req, res, next) => {
    const {nombre,email,interes,Opinion,comentarios}= req.body;
   try {
     // Guardar en un correo
     const correo ={
       from:"lernst2021@gmail",
-      to:email,
-      subject: "Nueva Solicitud de Asociacion",
+      to:"lernst2021@gmail",
+      subject: "Nueva solicitud de asociacion",
       template: "FormularioInformacion",
       context :{
       nombre:nombre,
@@ -162,13 +162,17 @@ exports.enviarCorreo = async  (req, res, next) => {
     },
     };
     const sendMail= util.promisify(transport.sendMail,transport);
-     return sendMail.call(transport,correo);
-     res.send("Tu mensaje fue enviado")
+     sendMail.call(transport,correo);
+     const messages = [];
+     messages.push({ message: "Solicitud enviada correctamente", alertType: "danger" })
+     req.flash("messages", messages);
+     res.render("formularioAsoci")
+
+     
   } catch (error) {
     console.log(error);
   }
-}
-
+} 
 
 // Mostrar el formulario de cambio de contraseña
 exports.formularioNuevoPassword = async (req, res, next) => {
@@ -289,6 +293,7 @@ exports.usuarioInfo = (req) => {
     const nombre = req.user.nombre;
     const email = req.user.email;
     const rol = req.user.rol;
+    const imagen = req.user.imagen;
     if (rol == "Admin") {
       admin = true;
     }
@@ -300,7 +305,7 @@ exports.usuarioInfo = (req) => {
     }
 
   usuario.push({
-    _id, nombre, email, rol, login, admin, tutor, cursilista
+    _id, nombre, email, rol, login, admin, tutor, cursilista, imagen
   });
 
   return usuario;

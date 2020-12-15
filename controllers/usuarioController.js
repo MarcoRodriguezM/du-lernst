@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const Usuario = mongoose.model("Usuarios");
 const { validationResult } = require("express-validator");
 const authController = require("../controllers/authController");
+const multer = require("multer");
+const shortid = require("shortid");
+const slug = require("slug");
 
 const year = new Date().getFullYear();
 
@@ -81,78 +84,137 @@ exports.crearCuenta = async (req, res, next) => {
   };
 
   exports.verPerfilUsuario = async (req, res, next) => {
-    const usuario = res.locals.usuario;
-    const verifyAuth = true;
-    res.render("perfil", { usuario, verifyAuth,
-      login: req.isAuthenticated(), 
+    const usuario = authController.usuarioInfo(req);
+    
+    res.render("perfil", { login: req.isAuthenticated(), 
       usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
   };
+
   exports.actualizarPerfil = async (req, res, next) => {
     const mensajes = [];
-    const usuarioSesion = res.locals.usuario;
-    const verifyAuth = true;
-    const { nombre, apellido, email, usuario } = req.body;
-    if (!nombre) {
-      mensajes.push({
-        mensaje: "El nombre no puede ir vacio.",
-        type: "alert-danger",
-      });
-    }
-    if (!apellido) {
-      mensajes.push({
-        mensaje: "El apellido no puede ir vacio.",
-        type: "alert-danger",
-      });
-    }
-    if (!email) {
-      mensajes.push({
-        mensaje: "El email no puede ir vacio.",
-        type: "alert-danger",
-      });
-    }
-    if (!usuario) {
-      mensajes.push({
-        mensaje: "El usuario no puede ir vacio.",
-        type: "alert-danger",
-      });
-    }
-    // Verificar si hay errores
-    if (mensajes.length) {
-      res.render("perfil", {
-        mensajes,
-        usuarioSesion,
-        usuario: usuarioSesion,
-        verifyAuth,
-      });
-    } else {
+    const usuario = authController.usuarioInfo(req);
+    const email = req.user.email;
+    const { nombre } = req.body;
+   
       try {
-        await Usuario.update(
-          { nombre, email, usuario },
-          { where: { id: usuarioSesion.id } }
-        );
+        const user = await Usuario.findOne({email});
+        console.log(user.imagen);
+        user.nombre = nombre;
+        user.email = email;
+        user.imagen = req.file.filename;
+        await user.save();
         mensajes.push({
           mensaje:
             "La informacion se ha actualizado exitosamente, es necesario que cierres tu sesion y vuelvas a iniciar",
           type: "alert-success",
         });
-        res.render("perfil", {
-          mensajes,
-          usuarioSesion,
-          usuario: usuarioSesion,
-          verifyAuth,
-        });
+        res.redirect("/perfil");
       } catch (error) {
         mensajes.push({
           mensaje: "Ha ocurrido un erro al momento de actualizar la informacion.",
           type: "alert-danger",
         });
-        res.render("perfil", {
-          mensajes,
-          usuarioSesion,
-          usuario: usuarioSesion,
-          verifyAuth,
-        });
+        res.redirect("/perfil");
       }
-    }
+    
   };
+
+function updateNota(req, res){
+    // Recogemos un parámetro por la url
+var notaId = req.params.id;
+
+    // Recogemos los datos que nos llegen en el body de la petición
+var update = req.body;
+
+    // Buscamos por id y actualizamos el objeto y devolvemos el objeto actualizado
+Nota.findByIdAndUpdate(notaId, update, {new:true}, (err, notaUpdated) => {
+    if(err) return res.status(500).send({message: 'Error en el servidor'});
+     
+        if(notaUpdated){
+            return res.status(200).send({
+                nota: notaUpdated
+            });
+        }else{
+            return res.status(404).send({
+                message: 'No existe la nota'
+            });
+        }
+     
+});
+}
+
+  exports.subirImagen = (req, res, next) => {
+    
+    upload(req, res, function (error) {
+      console.log(req.body);
+      if (error) {
+        // Errores de Multer
+        if (error instanceof multer.MulterError) {
+          if (error.code === "LIMIT_FILE_SIZE") {
+            req.flash("messages", [
+              {
+                message:
+                  "El tamaño del archivo es superior al límite. Máximo 300Kb",
+                alertType: "danger",
+              },
+            ]);
+          } else {
+            req.flash("messages", [
+              { message: error.message, alertType: "danger" },
+            ]);
+          }
+        } else {
+          // Errores creado por el usuario
+          req.flash("messages", [
+            { message: error.message, alertType: "danger" },
+          ]);
+        }
+        // Redireccionar y mostrar el error
+        res.redirect("/perfil");
+        return;
+      } else {
+        // Archivo cargado correctamente
+        return next();
+      }
+    });
+    // }
+  };
+  
+  // Opciones de configuración para multer en productos
+  const configuracionMulter = {
+    // Tamaño máximo del archivo en bytes
+    limits: {
+      fileSize: 300000,
+    },
+    // Dónde se almacena el archivo
+    storage: (fileStorage = multer.diskStorage({
+      destination: (req, res, cb) => {
+        cb(null, `${__dirname}../../public/uploads/perfil`);
+      },
+      filename: (req, file, cb) => {
+        // Construir el nombre del archivo
+        // iphone.png --> image/png --> ["image", "png"]
+        // iphone.jpg --> image/jpeg
+        const extension = file.mimetype.split("/")[1];
+        cb(null, `${shortid.generate()}.${extension}`);
+      },
+    })),
+    // Verificar el tipo de archivo mediante el mime type
+    // https://developer.mozilla.org/es/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+    fileFilter(req, file, cb) {
+      if (file.mimetype === "image/png" || file.mimetype === "image/jpeg") {
+        // Si el callback retorne true se acepta el tipo de archivo
+        cb(null, true);
+      } else {
+        cb(
+          new Error(
+            "Formato de archivo no válido. Solamente se permniten JPEG/JPG o PNG"
+          ),
+          false
+        );
+      }
+    },
+  };
+  const upload = multer(configuracionMulter).single("imagen");  
+        
   
