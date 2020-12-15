@@ -36,12 +36,7 @@ module.exports = () => {
   router.post(
     "/crear-categoria",
     authController.verificarInicioSesion,
-    // [
-    //   check("imagen", "Debes seleccionar una imagen para el producto")
-    //     .not()
-    //     .isEmpty(),
-    // ],
-    //categoriaController.subirImagen,
+    categoriaController.subirImagen,
     [
       check("nombre", "Debes ingresar el nombre de la categoria")
         .not()
@@ -52,6 +47,7 @@ module.exports = () => {
         .isEmpty()
         .escape(),
     ],
+    
     categoriaController.crearCategoria
   );
 
@@ -87,6 +83,8 @@ module.exports = () => {
     ],
     cursosController.crearCurso
   );
+
+  //router.get("/verCurso/:curso_id",VideoController.buscar);
 
 //Rutas Videos
   router.get("/videostutorias", (req, res, next) => {
