@@ -5,14 +5,13 @@ const hbs = require("nodemailer-express-handlebars");
 const util = require("util");
 
 // Configurar la capa de transporte del correo
-const transport = nodemailer.createTransport({
-  host: emailConfig.host,
-  port: emailConfig.port,
-  secure: false,
+var transport = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
   auth: {
-    user: emailConfig.user,
-    pass: emailConfig.pass,
-  },
+    user: "e07be47b77e23c",
+    pass: "37daa2807eddcd"
+  }
 });
 
 // Template para el envío del correo
