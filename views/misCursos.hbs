@@ -12,6 +12,7 @@
     
 
     {{#each cursos as |curso|}}
+    
       <div class="grid-item">
     <div class="card">
 
@@ -26,14 +27,28 @@
       <div class="circle">
         <img src="uploads/cursos/{{imagen}}" class="img-responsive" />
       </div>
+      
       <center>
 
     </div>
+
+    <form action="/crear-video/{{curso._id}}" method="get">
+  <button type="submit" class="btn btn-success">Agregar videos</button>
+</form>
+
     </div>
     
     {{/each}}
   </div>
-  
+  {{#each usuario as |user|}}
+<a href="/crear-curso">              
+              
+              <button class="button is-info" style="background-color: #33A1B7;">
+                <span class="icon">
+               <i class="fas fa-plus-square"></i>
+              </span> &nbsp;&nbsp;Nuevo curso</button>
+ </a>
+{{/each}}
 </body>
 
 

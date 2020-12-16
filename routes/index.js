@@ -84,7 +84,9 @@ module.exports = () => {
     cursosController.crearCurso
   );
 
-  //router.get("/verCurso/:curso_id",VideoController.buscar);
+  router.get("/verCurso/:_id",VideoController.enlistarVideosdelCurso);
+  //router.get("/vermiCurso/:curso_id",VideoController.enlistarVideosdelCurso);
+  router.get("/misCursos/:user_id",cursosController.misCursos);
 
 //Rutas Videos
   router.get("/videostutorias", (req, res, next) => {
@@ -136,7 +138,7 @@ module.exports = () => {
 
 // Rutas para videos
 router.get(
-  "/crear-video",
+  "/crear-video/:curso_id",
   authController.verificarInicioSesion,
   VideoController.formularioCrearVideo
 );

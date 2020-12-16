@@ -20,11 +20,11 @@ const videoSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
   },
-  /*curso: {
+  curso: {
     type: mongoose.Schema.ObjectId,
     ref: "Curso",
     required: true,
-  },*/
+  },
 });
 // Hooks para generar la URL de la categoria
 videoSchema.pre("save", function (next) {

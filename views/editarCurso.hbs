@@ -1,0 +1,82 @@
+<div class="main">
+  <div class="section">
+    <div class="container" style="width: 50%;">
+      <h1 class="title">Agrega tu Curso</h1>
+<div>
+  {{!-- Mensajes para el usuario --}}
+  {{> showMessages messages}}
+    <form action="/crear-curso" method="POST" enctype="multipart/form-data">
+
+<div class="field">
+  <label class="label">Nombre</label>
+  <div class="control">
+    <input class="input" type="text" name="nombre" placeholder="Nombre de su curso..">
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Categoria</label><br>
+  <div class="control">
+    <div class="select">
+      <select name="categoria">
+        {{#each categorias as |categoria|}} 
+        <option value="{{categoria._id}}">{{categoria.nombre}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <a class="button is-light" href="/crear-categoria">
+										<span class="icon">
+											<i class="fas fa-plus"></i>
+										</span>
+									</a>
+  </div>
+  <div class="control">
+    
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Precio</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input is-success" type="text" name="precio" placeholder="Precio">
+    <span class="icon is-small is-left">
+      <i class="fas fa-money-bill-alt"></i>
+    </span>
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Descripción</label>
+  <div class="control">
+    <textarea class="textarea" name="descripcion" placeholder="Descripcion"></textarea>
+  </div>
+</div>
+
+<div class="field">
+<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+  <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"
+    style="max-width: 370px; max-height: 250px;">
+  </div>
+  <div>
+    <span class="btn btn-outline-default btn-round btn-file"><label class="label">Selecciona una Imagen</label><br>
+    <span class="fileinput-exists">Cambiar  </span><input type="file" name="imagen"></span>
+    <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput">
+      <i class="fa fa-times"></i>Quitar</a>
+  </div>
+</div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" type="submit">Guardar</button>
+  </div>
+  <div class="control">
+    <button class="button is-link is-light" type="reset">Descartar</button>
+  </div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>

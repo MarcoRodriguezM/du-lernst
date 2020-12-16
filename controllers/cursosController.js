@@ -32,6 +32,15 @@ exports.buscar = async (req, res, next) => {
     usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
 };
 
+exports.misCursos = async (req, res, next) => {
+  const { user_id } = req.params;
+  const cursos = await Curso.find().where({owner: user_id}).lean();
+
+  res.render("misCursos", { cursos,
+    login: req.isAuthenticated(), 
+    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
+};
+
 // Mostrar el formulario de creación de producto
 exports.formularioCrearCurso = async (req, res, next) => {
   const categorias = await Categoria.find().lean();
@@ -163,20 +172,11 @@ const configuracionMulter = {
   },
 };
 
-exports.misCursos = async (req, res, next) => {
-  // Obtener todos los productos disponibles
-  const cursos = await Curso.find().where({tutor: req.user._id}).lean();
-
-  res.render("misCursos", { cursos,
-    login: req.isAuthenticated(), 
-    usuario: req.isAuthenticated() ? authController.usuarioInfo(req) : null });
-};
-
 // Muestra un producto que se obtiene a través de su URL
-exports.verCursos = async (req, res, next) => {
+exports.verCurso = async (req, res, next) => {
   // Utilizar la opción populate para obtener información sobre un Object_ID
   const curso = await Curso.findOne({ url: req.params.url })
-    .populate("tutor")
+    .populate("owner")
     .lean();
 
   // Buscar productos en el carrito de compras si existen
@@ -188,6 +188,23 @@ exports.verCursos = async (req, res, next) => {
       curso: curso,
       //productosCarrito: carrito ? carrito.producto.length : 0,
     });
+  }
+};
+
+exports.eliminarCurso = async (req, res, next) => {
+  
+  const { id } = req.params;
+
+  const curso = await Curso.findById(id);
+
+  if (curso) {
+    
+    curso.remove();
+    res.status(200).send("El curso ha sido eliminado correctamente");
+  } else {
+    
+    console.log(error);
+    res.status(403).send("Error al momento de eliminar el curso");
   }
 };
 

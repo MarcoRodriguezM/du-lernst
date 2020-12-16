@@ -61,9 +61,15 @@
           </footer>
                    
         </div>
+        {{#if login}}
+        {{#each usuario as |user|}}
+        {{#if user.admin}}
         <form action="/crear-categoria" method="get">
   <button type="submit" class="btn btn-success">Agregar categorías</button>
 </form>
+{{/if}}
+{{/each}}
+{{/if}}
       </div>
                   
                                 {{/each}}
