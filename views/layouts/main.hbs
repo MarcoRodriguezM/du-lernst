@@ -50,8 +50,11 @@
        &nbsp;
                
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-item" href="explorarCursos">
+          <a class="navbar-item" href="/explorarCursos">
             <strong>Explorar cursos</strong>
+          </a>
+          <a class="navbar-item" href="/enlistarVideos">
+            <strong>Explorar videos</strong>
           </a>
 
        
@@ -149,7 +152,9 @@
 
 
             {{!-- Boton y opciones de perfil --}}
-
+            <a class="navbar-item" href="/manualusuario" >
+            <strong>Manual</strong>
+          </a>
             <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-item" href="perfil" >
             <strong>{{user.nombre}}</strong>
@@ -159,6 +164,9 @@
             <a class="navbar-item" href="perfil">
              Perfil
             </a>  
+            <a class="navbar-item" href="/misCursos/{{user._id}}">
+             Mis cursos
+            </a> 
             <a class="navbar-item" href="salir">
              Cerrar sesion
             </a>          
